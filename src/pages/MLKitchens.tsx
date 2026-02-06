@@ -1,0 +1,343 @@
+import { useEffect } from 'react';
+import { CheckSquare, Package, Settings, Zap, Users, Wrench, FileText, ExternalLink } from 'lucide-react';
+import { 
+  ProductNavbar, 
+  Hero, 
+  Section, 
+  Container, 
+  FeatureCard,
+  FeatureShowcard, 
+  Button,
+  Footer 
+} from '../components';
+
+// ML Kitchens Features Data
+const mlKitchensFeatures = [
+  {
+    title: "Advanced Configuration Dialog",
+    description: "Six-tab interface with live 3D preview. Configure dimensions, construction, doors, drawers, and materials with real-time visual feedback.",
+    gifUrl: undefined, // Will be added when available
+    placeholderText: "Config Dialog Demo"
+  },
+  {
+    title: "Revolutionary 3D Preview System", 
+    description: "Real-time Three.js visualization with interactive door and drawer animations. Click to open elements and see exactly what you're designing.",
+    gifUrl: undefined,
+    placeholderText: "3D Preview Demo"
+  },
+  {
+    title: "Precision Placement Controls",
+    description: "Advanced placement with keyboard shortcuts, live anchor markers, and 90° rotation controls for perfect cabinet positioning every time.",
+    gifUrl: undefined,
+    placeholderText: "Placement Demo"
+  },
+  {
+    title: "160+ Professional Cabinet Presets", 
+    description: "Complete library of base, wall, tall, and corner cabinets in both metric and imperial units. From single doors to complex configurations.",
+    gifUrl: undefined,
+    placeholderText: "Cabinet Library Demo"
+  },
+  {
+    title: "25+ Door & Drawer Styles",
+    description: "From classic Shaker to contemporary slab designs. Mix and match styles per cabinet or even per door for unlimited design flexibility.",
+    gifUrl: undefined,
+    placeholderText: "Styles Demo"
+  },
+  {
+    title: "Built-In Appliance Integration", 
+    description: "Visual appliance selector with ovens, microwaves, dishwashers, and refrigerators. Automatic scaling and real-time 3D preview integration.",
+    gifUrl: undefined,
+    placeholderText: "Appliances Demo"
+  },
+  {
+    title: "Professional Schedule Manager",
+    description: "Generate detailed cabinet schedules with filtering, client information, and professional CSV/HTML exports for quotes and documentation.",
+    gifUrl: undefined,
+    placeholderText: "Schedule Demo"
+  },
+  {
+    title: "OpenCutList Compatibility", 
+    description: "Seamless integration with manufacturing tools. Generate cut lists, material reports, and CNC-ready documentation from your designs.",
+    gifUrl: undefined,
+    placeholderText: "Manufacturing Demo"
+  }
+];
+
+function MLKitchens() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <div className="App">
+      <ProductNavbar 
+        productName="ML Kitchens" 
+        gumroadUrl="https://mostafalamey1.gumroad.com/l/mlkitchens281"
+      />
+      
+      <Hero 
+        title="ML Kitchens"
+        subtitle="A professional kitchen cabinet design extension for SketchUp with precision workflows, real-time previews, and production-ready outputs."
+        primaryButtonText="Buy on Gumroad"
+        primaryButtonHref="https://mostafalamey1.gumroad.com/l/mlkitchens281"
+        primaryButtonTarget="_blank"
+        secondaryButtonText="View Documentation"
+        secondaryButtonHref="#documentation"
+      />
+
+      {/* The Problem */}
+      <Section id="problem">
+        <Container textAlign="center">
+          <h2>The problem</h2>
+          <p style={{ maxWidth: '700px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            Designing cabinets by hand wastes hours. Static plans, manual measurements, and inconsistent revisions slow you down — 
+            and client revisions make it worse. Most kitchen tools lack flexibility, customizable hardware, and reliable documentation.
+          </p>
+        </Container>
+      </Section>
+
+      {/* What It Does */}
+      <Section background="alt" id="solution">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>What it does</h2>
+          
+          <div style={{ maxWidth: '800px', margin: '0 auto', marginBottom: 'var(--spacing-12)' }}>
+            <p style={{ fontSize: 'var(--font-size-lg)', textAlign: 'center', marginBottom: 'var(--spacing-8)' }}>
+              ML Kitchens replaces manual cabinet modeling with a fully automated, customizable system built for real workflows.
+            </p>
+          </div>
+
+          <div className="grid-2" style={{ gap: 'var(--spacing-8)' }}>
+            <div className="feature-list">
+              <h3 style={{ marginBottom: 'var(--spacing-6)' }}>Key capabilities:</h3>
+              <ul style={{ listStyle: 'none', padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>160+ professional cabinet presets with metric and imperial support</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Live 3D preview with smooth animations and real-time feedback</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Six-tab configuration interface for every design detail</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Multiple door, drawer, hardware, and material libraries</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="feature-list">
+              <h3 style={{ marginBottom: 'var(--spacing-6)' }}>&nbsp;</h3>
+              <ul style={{ listStyle: 'none', padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Integrated appliance placement and countertop generation</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Professional schedule manager with CSV/HTML exports</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Fully compatible with manufacturing tools like OpenCutList</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Features Showcase */}
+      <Section id="features">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>Key Features</h2>
+          
+          <div className="grid-2" style={{ gap: 'var(--spacing-12)' }}>
+            {mlKitchensFeatures.map((feature, index) => (
+              <FeatureShowcard
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                gifUrl={feature.gifUrl}
+                placeholderText={feature.placeholderText}
+              />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Workflow */}
+      <Section background="alt" id="workflow">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>How it fits into your workflow</h2>
+          
+          <div className="grid-2" style={{ gap: 'var(--spacing-12)' }}>
+            <div className="workflow-steps">
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">1</span>
+                <div>
+                  <h4>Start with presets</h4>
+                  <p>Place cabinets using presets or custom dimensions.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">2</span>
+                <div>
+                  <h4>Customize everything</h4>
+                  <p>Adjust geometry, materials, hardware, and appliances.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">3</span>
+                <div>
+                  <h4>Preview changes</h4>
+                  <p>See updates instantly in real-time 3D.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="workflow-steps">
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">4</span>
+                <div>
+                  <h4>Generate documentation</h4>
+                  <p>Create schedules and production documentation.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">5</span>
+                <div>
+                  <h4>Export results</h4>
+                  <p>Print or export finished designs and schedules.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Who It's For */}
+      <Section background="alt" id="who-its-for">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>Who this is for</h2>
+          
+          <div className="grid-3">
+            <FeatureCard
+              icon={<Settings className="feature-icon" />}
+              title="Kitchen Designers"
+              description="Present accurate designs that clients understand."
+            />
+            
+            <FeatureCard
+              icon={<Wrench className="feature-icon" />}
+              title="Contractors & Remodelers"
+              description="Quote and deliver with precision."
+            />
+            
+            <FeatureCard
+              icon={<Users className="feature-icon" />}
+              title="Architects"
+              description="Integrate detailed kitchen cabinetry into projects."
+            />
+            
+            <FeatureCard
+              icon={<Package className="feature-icon" />}
+              title="Cabinet Makers"
+              description="Produce accurate parts with manufacturing-ready exports."
+            />
+            
+            <FeatureCard
+              icon={<Zap className="feature-icon" />}
+              title="Interior Designers"
+              description="Customize every detail with confidence."
+            />
+          </div>
+        </Container>
+      </Section>
+
+      {/* Compatibility */}
+      <Section id="compatibility">
+        <Container textAlign="center">
+          <h2>Compatibility</h2>
+          <div style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-8)' }}>
+            <div className="compatibility-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--spacing-6)', textAlign: 'left' }}>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>SketchUp Versions</h4>
+                <p>2021 and newer</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Operating Systems</h4>
+                <p>Windows & Mac</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Requirements</h4>
+                <p>Internet connection for license verification</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Editions</h4>
+                <p>Works in SketchUp Pro and Make (2024+)</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Documentation */}
+      <Section background="alt" id="documentation">
+        <Container textAlign="center">
+          <h2>Learn and master</h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            Comprehensive guides, feature documentation, keyboard shortcuts, and workflow examples are included 
+            to help you get productive quickly.
+          </p>
+          <div style={{ marginTop: 'var(--spacing-8)' }}>
+            <Button href="#learn" variant="secondary" icon={<FileText size={20} />}>
+              View Documentation
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Roadmap */}
+      <Section id="roadmap">
+        <Container textAlign="center">
+          <h2>Where this is going</h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            ML Kitchens continues to evolve with deeper manufacturing integration, expanded libraries, 
+            and new workflow simplifications based on real user feedback.
+          </p>
+        </Container>
+      </Section>
+
+      {/* Purchase CTA */}
+      <Section background="alt" id="purchase">
+        <Container textAlign="center">
+          <h2>Ready to transform your kitchen design workflow?</h2>
+          <p style={{ maxWidth: '500px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            Get ML Kitchens and start designing professional kitchen cabinets with precision and speed.
+          </p>
+          <div style={{ marginTop: 'var(--spacing-8)' }}>
+            <Button 
+              href="https://mostafalamey1.gumroad.com/l/mlkitchens281" 
+              target="_blank"
+              variant="primary" 
+              icon={<ExternalLink size={20} />}
+            >
+              Buy on Gumroad
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default MLKitchens;

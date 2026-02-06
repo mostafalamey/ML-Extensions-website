@@ -1,0 +1,345 @@
+import { useEffect } from 'react';
+import { CheckSquare, Package, Wrench, FileText, ExternalLink, Home, Building, Layers } from 'lucide-react';
+import { 
+  ProductNavbar, 
+  Hero, 
+  Section, 
+  Container, 
+  FeatureCard,
+  FeatureShowcard, 
+  Button,
+  Footer 
+} from '../components';
+
+// ML Doors Features Data
+const mlDoorsFeatures = [
+  {
+    title: "Complete Door System Generation",
+    description: "Automatically generate complete door assemblies including frames, jambs, casings, and hardware. No manual modeling required - get professional results in seconds.",
+    gifUrl: undefined, // Will be added when available
+    placeholderText: "Door System Demo"
+  },
+  {
+    title: "Interactive 3D Preview System", 
+    description: "Real-time preview with door animations and opening/closing behaviors. See exactly how your doors will look and function before placement.",
+    gifUrl: undefined,
+    placeholderText: "3D Preview Demo"
+  },
+  {
+    title: "Multiple Door Types",
+    description: "Support for hinged (single/double), sliding, pocket doors, and standard doorways. Each type includes specialized hardware and placement logic.",
+    gifUrl: undefined,
+    placeholderText: "Door Types Demo"
+  },
+  {
+    title: "20+ Professional Door Designs", 
+    description: "Comprehensive library of door leaf designs from traditional panels to contemporary styles. Mix and match with 48 professional materials.",
+    gifUrl: undefined,
+    placeholderText: "Door Library Demo"
+  },
+  {
+    title: "Custom Geometry Import",
+    description: "Import any SketchUp geometry as door panels, profiles, or hardware. Save custom designs for reuse across projects with complete flexibility.",
+    gifUrl: undefined,
+    placeholderText: "Custom Import Demo"
+  },
+  {
+    title: "Intelligent Wall Integration", 
+    description: "Automatically cut and patch walls when placing or moving doors. Perfect wall integration with no manual cleanup required.",
+    gifUrl: undefined,
+    placeholderText: "Wall Integration Demo"
+  },
+  {
+    title: "Door Animation System",
+    description: "Smooth door motion with configurable opening directions and realistic swing behaviors. Perfect for presentations and design validation.",
+    gifUrl: undefined,
+    placeholderText: "Animation Demo"
+  },
+  {
+    title: "Professional Documentation", 
+    description: "Generate detailed door schedules with CSV and HTML exports. Include specifications, materials, and hardware for production-ready documentation.",
+    gifUrl: undefined,
+    placeholderText: "Documentation Demo"
+  }
+];
+
+function MLDoors() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
+  return (
+    <div className="App">
+      <ProductNavbar 
+        productName="ML Doors" 
+        gumroadUrl="https://mostafalamey1.gumroad.com/l/MLDoors232"
+      />
+      
+      <Hero 
+        title="ML Doors"
+        subtitle="A complete professional door creation and management system for SketchUp with automated placement, intelligent wall integration, and production-ready documentation."
+        primaryButtonText="Buy on Gumroad"
+        primaryButtonHref="https://mostafalamey1.gumroad.com/l/MLDoors232"
+        primaryButtonTarget="_blank"
+        secondaryButtonText="View Documentation"
+        secondaryButtonHref="#documentation"
+      />
+
+      {/* The Problem */}
+      <Section id="problem">
+        <Container textAlign="center">
+          <h2>The problem</h2>
+          <p style={{ maxWidth: '700px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            Creating doors manually in SketchUp is time-consuming and inconsistent. Wall cutting, frame geometry, hardware placement, 
+            and documentation require tedious manual work — and client changes mean starting over.
+          </p>
+        </Container>
+      </Section>
+
+      {/* What It Does */}
+      <Section background="alt" id="solution">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>What it does</h2>
+          
+          <div style={{ maxWidth: '800px', margin: '0 auto', marginBottom: 'var(--spacing-12)' }}>
+            <p style={{ fontSize: 'var(--font-size-lg)', textAlign: 'center', marginBottom: 'var(--spacing-8)' }}>
+              ML Doors transforms door design with a complete automated system that eliminates manual modeling and 
+              delivers professional results including frames, casings, hardware, and intelligent wall integration.
+            </p>
+          </div>
+
+          <div className="grid-2" style={{ gap: 'var(--spacing-8)' }}>
+            <div className="feature-list">
+              <h3 style={{ marginBottom: 'var(--spacing-6)' }}>Key capabilities:</h3>
+              <ul style={{ listStyle: 'none', padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>20+ professional door designs with 48 material combinations</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Complete system generation including frames, jambs, and casings</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Interactive 3D preview with realistic door animations</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Multiple door types: hinged, sliding, pocket, and doorways</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="feature-list">
+              <h3 style={{ marginBottom: 'var(--spacing-6)' }}>&nbsp;</h3>
+              <ul style={{ listStyle: 'none', padding: 0 }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Automatic wall cutting and patching with intelligent integration</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Custom geometry import for unlimited design flexibility</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 'var(--spacing-4)' }}>
+                  <CheckSquare size={20} style={{ color: 'var(--color-accent)', marginRight: 'var(--spacing-3)', marginTop: '2px', flexShrink: 0 }} />
+                  <span>Professional schedule generation with CSV and HTML exports</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Features Showcase */}
+      <Section id="features">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>Key Features</h2>
+          
+          <div className="grid-2" style={{ gap: 'var(--spacing-12)' }}>
+            {mlDoorsFeatures.map((feature, index) => (
+              <FeatureShowcard
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                gifUrl={feature.gifUrl}
+                placeholderText={feature.placeholderText}
+              />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Workflow */}
+      <Section background="alt" id="workflow">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>How it fits into your workflow</h2>
+          
+          <div className="grid-2" style={{ gap: 'var(--spacing-12)' }}>
+            <div className="workflow-steps">
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">1</span>
+                <div>
+                  <h4>Select wall and door type</h4>
+                  <p>Choose from hinged, sliding, pocket, or standard doorways.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">2</span>
+                <div>
+                  <h4>Place automatically</h4>
+                  <p>Wall cutting and patching happen instantly.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">3</span>
+                <div>
+                  <h4>Customize design</h4>
+                  <p>Adjust materials, profiles, and hardware.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="workflow-steps">
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">4</span>
+                <div>
+                  <h4>Preview and animate</h4>
+                  <p>Test door behavior with realistic motion.</p>
+                </div>
+              </div>
+              
+              <div className="workflow-step" style={{ marginBottom: 'var(--spacing-8)' }}>
+                <span className="step-number">5</span>
+                <div>
+                  <h4>Generate documentation</h4>
+                  <p>Export schedules and production specifications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Who It's For */}
+      <Section background="alt" id="who-its-for">
+        <Container>
+          <h2 className="text-center" style={{ marginBottom: 'var(--spacing-16)' }}>Who this is for</h2>
+          
+          <div className="grid-3">
+            <FeatureCard
+              icon={<Building className="feature-icon" />}
+              title="Architects"
+              description="Speed up door placement and maintain design accuracy."
+            />
+            
+            <FeatureCard
+              icon={<Home className="feature-icon" />}
+              title="Interior Designers"
+              description="Visualize detailed door variations with precision."
+            />
+            
+            <FeatureCard
+              icon={<Wrench className="feature-icon" />}
+              title="Contractors"
+              description="Keep models accurate and production-ready."
+            />
+            
+            <FeatureCard
+              icon={<Layers className="feature-icon" />}
+              title="BIM Professionals"
+              description="Ensure door specifications match project requirements."
+            />
+            
+            <FeatureCard
+              icon={<Package className="feature-icon" />}
+              title="Millwork Designers"
+              description="Create detailed door systems for manufacturing."
+            />
+          </div>
+        </Container>
+      </Section>
+
+      {/* Compatibility */}
+      <Section id="compatibility">
+        <Container textAlign="center">
+          <h2>Compatibility</h2>
+          <div style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-8)' }}>
+            <div className="compatibility-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'var(--spacing-6)', textAlign: 'left' }}>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>SketchUp Versions</h4>
+                <p>2021 and newer</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Operating Systems</h4>
+                <p>Windows & Mac</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Units</h4>
+                <p>Metric and Imperial supported</p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-accent)', marginBottom: 'var(--spacing-2)' }}>Requirements</h4>
+                <p>Internet connection for license verification</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Documentation */}
+      <Section background="alt" id="documentation">
+        <Container textAlign="center">
+          <h2>Learn and master</h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            ML Doors includes built-in documentation with visual guides and context-sensitive help to get you 
+            productive quickly with professional door design workflows.
+          </p>
+          <div style={{ marginTop: 'var(--spacing-8)' }}>
+            <Button href="#learn" variant="secondary" icon={<FileText size={20} />}>
+              View Documentation
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Roadmap */}
+      <Section id="roadmap">
+        <Container textAlign="center">
+          <h2>Where this is going</h2>
+          <p style={{ maxWidth: '600px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            ML Doors continues to evolve with expanded door libraries, enhanced automation, 
+            and deeper integration with architectural workflows based on professional feedback.
+          </p>
+        </Container>
+      </Section>
+
+      {/* Purchase CTA */}
+      <Section background="alt" id="purchase">
+        <Container textAlign="center">
+          <h2>Ready to transform your door design workflow?</h2>
+          <p style={{ maxWidth: '500px', margin: '0 auto', marginTop: 'var(--spacing-6)', fontSize: 'var(--font-size-lg)' }}>
+            Get ML Doors and start creating professional door systems with precision, speed, and complete automation.
+          </p>
+          <div style={{ marginTop: 'var(--spacing-8)' }}>
+            <Button 
+              href="https://mostafalamey1.gumroad.com/l/MLDoors232" 
+              target="_blank"
+              variant="primary" 
+              icon={<ExternalLink size={20} />}
+            >
+              Buy on Gumroad
+            </Button>
+          </div>
+        </Container>
+      </Section>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default MLDoors;
