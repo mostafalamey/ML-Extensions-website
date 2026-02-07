@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "./Button";
-import MLExtensionsLogo from "../assets/ml_extensions_logo.svg";
 
 interface ProductNavbarProps {
   productName: string;
@@ -199,7 +197,9 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
                 {navItems.map((item) => (
                   <a
                     key={item.id}
-                    ref={(el) => (navLinksRef.current[item.id] = el)}
+                    ref={(el) => {
+                      navLinksRef.current[item.id] = el;
+                    }}
                     href={item.href}
                     className={`product-navbar-link ${activeSection === item.id ? "active" : ""}`}
                     onClick={(e) => handleNavClick(e, item.sectionId)}

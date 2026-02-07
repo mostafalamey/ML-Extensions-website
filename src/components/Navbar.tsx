@@ -132,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   };
 
   const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
     sectionId: string,
   ) => {
     e.preventDefault();
@@ -174,7 +174,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a
-                    ref={(el) => (navLinksRef.current[item.id] = el)}
+                    ref={(el) => {
+                      navLinksRef.current[item.id] = el;
+                    }}
                     href={item.href}
                     className={`navbar-link ${activeSection === item.id ? "active" : ""}`}
                     onClick={(e) => handleNavClick(e, item.sectionId)}
@@ -199,9 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             href="#products"
             variant="primary"
             className="navbar-cta"
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-              handleNavClick(e, "products")
-            }
+            onClick={(e) => handleNavClick(e, "products")}
           >
             View Products
           </Button>
@@ -258,7 +258,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
           <Button
             href="#products"
             variant="primary"
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            onClick={(e) => {
               handleNavClick(e, "products");
               closeMobileMenu();
             }}
