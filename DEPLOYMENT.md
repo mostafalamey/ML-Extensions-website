@@ -19,7 +19,7 @@ Your production build is now ready in the `dist` folder. This folder contains:
 ### Option A: Using File Manager (Recommended for beginners)
 
 1. **Log in to hPanel**
-   - Go to https://hpanel.hostinger.com
+   - Go to <https://hpanel.hostinger.com>
    - Sign in with your credentials
 
 2. **Access File Manager**
@@ -44,7 +44,7 @@ Your production build is now ready in the `dist` folder. This folder contains:
    - Note the hostname, username, and password
 
 2. **Connect with FTP Client** (FileZilla recommended)
-   - Download FileZilla: https://filezilla-project.org
+   - Download FileZilla: <https://filezilla-project.org>
    - Host: Your FTP hostname (usually ftp.yourdomain.com)
    - Username: Your FTP username
    - Password: Your FTP password
@@ -114,7 +114,7 @@ When you make changes to your website:
 
 1. **Rebuild the project:**
 
-   ```
+   ```powershell
    npm run build
    ```
 
@@ -139,7 +139,7 @@ Your `.htaccess` file includes:
 ## Support
 
 - **Hostinger Support:** Available 24/7 via live chat in hPanel
-- **Documentation:** https://support.hostinger.com
+- **Documentation:** <https://support.hostinger.com>
 - **Build Issues:** Run `npm run build` and check for errors
 
 ## Quick Reference
