@@ -1,6 +1,7 @@
 // Component exports for easy importing
 export { Button } from "./Button";
 export { ProductCard } from "./ProductCard";
+export { ParticleBackground } from "./ParticleBackground";
 export { FeatureCard } from "./FeatureCard";
 export { FeatureShowcard } from "./FeatureShowcard";
 export { ValueCard } from "./ValueCard";

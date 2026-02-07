@@ -3,11 +3,13 @@ import HomePage from './pages/HomePage';
 import MLKitchens from './pages/MLKitchens';
 import MLDoors from './pages/MLDoors';
 import ScrollToTop from './components/ScrollToTop';
+import { ParticleBackground } from './components';
 import './App.css';
 
 function App() {
   return (
     <>
+      <ParticleBackground />
       <ScrollToTop />
       <Routes>
       <Route path="/" element={<HomePage />} />
