@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "./Button";
 
@@ -185,9 +186,9 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
         <div className="product-navbar-container">
           {/* Brand Section with Home Button */}
           <div className="product-navbar-brand">
-            <a href="/" className="product-navbar-brand-link">
+            <Link to="/" className="product-navbar-brand-link">
               ML Extensions
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}

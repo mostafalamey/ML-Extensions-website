@@ -41,7 +41,6 @@ function HomePage() {
   const [doorImage] = useState(() => getRandomImage(doorHeroImages));
 
   useEffect(() => {
-    window.scrollTo(0, 0);
 
     // Handle smooth scrolling for all hash links
     const handleHashClick = (e: MouseEvent) => {

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   CheckSquare,
@@ -119,10 +118,6 @@ const galleryImages: GalleryImage[] = [
 ];
 
 function MLDoors() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="App">
       <ProductNavbar

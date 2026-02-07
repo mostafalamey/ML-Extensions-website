@@ -2,15 +2,19 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MLKitchens from './pages/MLKitchens';
 import MLDoors from './pages/MLDoors';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/ml-kitchens" element={<MLKitchens />} />
       <Route path="/ml-doors" element={<MLDoors />} />
     </Routes>
+    </>
   );
 }
 
