@@ -133,7 +133,7 @@ function MLDoors() {
         primaryButtonTarget="_blank"
         secondaryButtonText="View Documentation"
         secondaryButtonHref="#documentation"
-        backgroundImages={["/doors-hero/door01.jpg", "/doors-hero/door02.jpg"]}
+        backgroundImages={["/doors-hero/door01.webp", "/doors-hero/door02.webp"]}
         carouselInterval={5000}
       />
 

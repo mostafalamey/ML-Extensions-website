@@ -13,3 +13,4 @@ export { Footer } from "./Footer";
 export { Modal } from "./Modal";
 export { ImageGallery } from "./ImageGallery";
 export type { GalleryImage } from "./ImageGallery";
+export { SmartImage } from "./SmartImage";

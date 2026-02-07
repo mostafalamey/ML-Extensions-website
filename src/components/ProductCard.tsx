@@ -42,6 +42,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="product-card" 
           target="_blank" 
           rel="noopener noreferrer"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={staggerItem}
         >
           {content}
@@ -53,6 +56,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <MotionLink 
           to={href} 
           className="product-card"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={staggerItem}
         >
           {content}
@@ -66,6 +72,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       className="product-card" 
       onClick={onClick} 
       style={{ cursor: onClick ? 'pointer' : 'default' }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       variants={staggerItem}
     >
       {content}

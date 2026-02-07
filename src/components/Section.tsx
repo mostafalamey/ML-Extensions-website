@@ -45,7 +45,7 @@ export const Section: React.FC<SectionProps> = ({
       className={`${baseClasses.join(' ')} ${className}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={variant}
     >
       {children}
@@ -74,7 +74,7 @@ export const Container: React.FC<ContainerProps> = ({
         className={`container ${textAlignClass} ${className}`}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2, margin: "-50px" }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={staggerContainer}
       >
         {children}

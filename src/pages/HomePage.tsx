@@ -23,13 +23,13 @@ import {
 
 // Hero images for each product
 const kitchenHeroImages = [
-  "/kitchens-hero/kit05.jpg",
-  "/kitchens-hero/kit06.jpg",
-  "/kitchens-hero/kit08.jpg",
-  "/kitchens-hero/kit15.jpg",
+  "/kitchens-hero/kit05.webp",
+  "/kitchens-hero/kit06.webp",
+  "/kitchens-hero/kit08.webp",
+  "/kitchens-hero/kit15.webp",
 ];
 
-const doorHeroImages = ["/doors-hero/door01.jpg", "/doors-hero/door02.jpg"];
+const doorHeroImages = ["/doors-hero/door01.webp", "/doors-hero/door02.webp"];
 
 // Function to get a random image from an array
 const getRandomImage = (images: string[]) => {
@@ -91,12 +91,12 @@ function HomePage() {
         secondaryButtonText="Explore Documentation"
         secondaryButtonHref="#learn"
         backgroundImages={[
-          "/kitchens-hero/kit05.jpg",
-          "/kitchens-hero/kit06.jpg",
-          "/doors-hero/door01.jpg",
-          "/kitchens-hero/kit08.jpg",
-          "/doors-hero/door02.jpg",
-          "/kitchens-hero/kit15.jpg",
+          "/kitchens-hero/kit05.webp",
+          "/kitchens-hero/kit06.webp",
+          "/doors-hero/door01.webp",
+          "/kitchens-hero/kit08.webp",
+          "/doors-hero/door02.webp",
+          "/kitchens-hero/kit15.webp",
         ]}
         carouselInterval={5000}
       />

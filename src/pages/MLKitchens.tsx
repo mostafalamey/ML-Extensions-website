@@ -87,77 +87,77 @@ const mlKitchensFeatures = [
 const galleryImages: GalleryImage[] = [
   {
     id: "kitchen-2",
-    url: "/kitchens-gallery/kit02.jpg",
+    url: "/kitchens-gallery/kit02.webp",
     alt: "Contemporary Kitchen Layout",
   },
   {
     id: "kitchen-4",
-    url: "/kitchens-gallery/kit04.jpg",
+    url: "/kitchens-gallery/kit04.webp",
     alt: "Professional Kitchen Design",
   },
   {
     id: "kitchen-5",
-    url: "/kitchens-gallery/kit05.jpg",
+    url: "/kitchens-gallery/kit05.webp",
     alt: "Kitchen Cabinetry System",
   },
   {
     id: "kitchen-6",
-    url: "/kitchens-gallery/kit06.jpg",
+    url: "/kitchens-gallery/kit06.webp",
     alt: "Custom Kitchen Installation",
   },
   {
     id: "kitchen-7",
-    url: "/kitchens-gallery/kit07.jpg",
+    url: "/kitchens-gallery/kit07.webp",
     alt: "Modular Kitchen Design",
   },
   {
     id: "kitchen-8",
-    url: "/kitchens-gallery/kit08.jpg",
+    url: "/kitchens-gallery/kit08.webp",
     alt: "Kitchen with Island Configuration",
   },
   {
     id: "kitchen-9",
-    url: "/kitchens-gallery/kit09.jpg",
+    url: "/kitchens-gallery/kit09.webp",
     alt: "Elegant Kitchen Setup",
   },
   {
     id: "kitchen-10",
-    url: "/kitchens-gallery/kit10.jpg",
+    url: "/kitchens-gallery/kit10.webp",
     alt: "Complete Kitchen Design Solution",
   },
   {
     id: "kitchen-11",
-    url: "/kitchens-gallery/kit11.jpg",
+    url: "/kitchens-gallery/kit11.webp",
     alt: "Kitchen Cabinet Arrangement",
   },
   {
     id: "kitchen-12",
-    url: "/kitchens-gallery/kit12.jpg",
+    url: "/kitchens-gallery/kit12.webp",
     alt: "Professional Kitchen Layout",
   },
   {
     id: "kitchen-13",
-    url: "/kitchens-gallery/kit13.jpg",
+    url: "/kitchens-gallery/kit13.webp",
     alt: "High-End Kitchen Design",
   },
   {
     id: "kitchen-14",
-    url: "/kitchens-gallery/kit14.jpg",
+    url: "/kitchens-gallery/kit14.webp",
     alt: "Kitchen Design with Appliances",
   },
   {
     id: "kitchen-15",
-    url: "/kitchens-gallery/kit15.jpg",
+    url: "/kitchens-gallery/kit15.webp",
     alt: "Modern Kitchen Cabinets",
   },
   {
     id: "kitchen-16",
-    url: "/kitchens-gallery/kit16.jpg",
+    url: "/kitchens-gallery/kit16.webp",
     alt: "Kitchen Design Example",
   },
   {
     id: "kitchen-17",
-    url: "/kitchens-gallery/kit17.jpg",
+    url: "/kitchens-gallery/kit17.webp",
     alt: "Complete Kitchen Project",
   },
 ];
@@ -179,11 +179,11 @@ function MLKitchens() {
         secondaryButtonText="View Documentation"
         secondaryButtonHref="#documentation"
         backgroundImages={[
-          "/kitchens-hero/kit04.jpg",
-          "/kitchens-hero/kit05.jpg",
-          "/kitchens-hero/kit06.jpg",
-          "/kitchens-hero/kit08.jpg",
-          "/kitchens-hero/kit15.jpg",
+          "/kitchens-hero/kit04.webp",
+          "/kitchens-hero/kit05.webp",
+          "/kitchens-hero/kit06.webp",
+          "/kitchens-hero/kit08.webp",
+          "/kitchens-hero/kit15.webp",
         ]}
         carouselInterval={5000}
       />

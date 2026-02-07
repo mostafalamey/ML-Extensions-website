@@ -79,8 +79,8 @@ export const Hero: React.FC<HeroProps> = ({
           initial="hidden"
           animate="visible"
           variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] } }
+            hidden: { opacity: 0, x: -30 },
+            visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] } }
           }}
         >
           {subtitle}

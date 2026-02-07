@@ -36,7 +36,7 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
         style={{ cursor: 'pointer' }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         variants={staggerItem}
       >
         <div className="feature-showcard-media">
