@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   CheckSquare,
   Package,
@@ -21,6 +22,7 @@ import {
   ImageGallery,
   type GalleryImage,
 } from "../components";
+import { staggerItem } from "../utils/animations";
 
 // ML Doors Features Data
 const mlDoorsFeatures = [
@@ -141,7 +143,7 @@ function MLDoors() {
       />
 
       {/* The Problem */}
-      <Section id="problem">
+      <Section id="problem" animation="fade-up">
         <Container textAlign="center">
           <h2>The problem</h2>
           <p className="content-max-width-700 margin-top-6 text-lg">
@@ -154,8 +156,8 @@ function MLDoors() {
       </Section>
 
       {/* What It Does */}
-      <Section background="alt" id="solution">
-        <Container>
+      <Section background="alt" id="solution" animation="fade-left">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">What it does</h2>
 
           <div className="content-max-width-800 margin-bottom-12">
@@ -171,56 +173,56 @@ function MLDoors() {
             <div className="feature-list">
               <h3 className="margin-bottom-6">Key capabilities:</h3>
               <ul className="feature-list-unstyled">
-                <li className="feature-list-item">
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     20+ professional door designs with 48 material combinations
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Complete system generation including frames, jambs, and
                     casings
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Interactive 3D preview with realistic door animations
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Multiple door types: hinged, sliding, pocket, and doorways
                   </span>
-                </li>
+                </motion.li>
               </ul>
             </div>
 
             <div className="feature-list">
               <h3 className="margin-bottom-6">&nbsp;</h3>
               <ul className="feature-list-unstyled">
-                <li className="feature-list-item">
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Automatic wall cutting and patching with intelligent
                     integration
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Custom geometry import for unlimited design flexibility
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Professional schedule generation with CSV and HTML exports
                   </span>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
@@ -247,7 +249,7 @@ function MLDoors() {
       </Section>
 
       {/* Gallery */}
-      <Section background="alt" id="gallery">
+      <Section background="alt" id="gallery" animation="zoom">
         <Container>
           <h2 className="text-center margin-bottom-12">Project Gallery</h2>
           <p className="content-max-width-700 text-center margin-bottom-12 text-lg">
@@ -259,15 +261,15 @@ function MLDoors() {
       </Section>
 
       {/* Workflow */}
-      <Section id="workflow">
-        <Container>
+      <Section id="workflow" animation="fade-right">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">
             How it fits into your workflow
           </h2>
 
           <div className="grid-2 grid-gap-12">
             <div className="workflow-steps">
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">1</span>
                 <div>
                   <h4>Select wall and door type</h4>
@@ -275,49 +277,49 @@ function MLDoors() {
                     Choose from hinged, sliding, pocket, or standard doorways.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">2</span>
                 <div>
                   <h4>Place automatically</h4>
                   <p>Wall cutting and patching happen instantly.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">3</span>
                 <div>
                   <h4>Customize design</h4>
                   <p>Adjust materials, profiles, and hardware.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <div className="workflow-steps">
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">4</span>
                 <div>
                   <h4>Preview and animate</h4>
                   <p>Test door behavior with realistic motion.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">5</span>
                 <div>
                   <h4>Generate documentation</h4>
                   <p>Export schedules and production specifications.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </Container>
       </Section>
 
       {/* Who It's For */}
-      <Section background="alt" id="who-its-for">
-        <Container>
+      <Section background="alt" id="who-its-for" animation="fade-up">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">Who this is for</h2>
 
           <div className="grid-3">
@@ -355,7 +357,7 @@ function MLDoors() {
       </Section>
 
       {/* Compatibility */}
-      <Section id="compatibility">
+      <Section id="compatibility" animation="fade-left">
         <Container textAlign="center">
           <h2>Compatibility</h2>
           <div className="compatibility-wrapper">
@@ -382,7 +384,7 @@ function MLDoors() {
       </Section>
 
       {/* Documentation */}
-      <Section background="alt" id="documentation">
+      <Section background="alt" id="documentation" animation="scale">
         <Container textAlign="center">
           <h2>Learn and master</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -403,7 +405,7 @@ function MLDoors() {
       </Section>
 
       {/* Roadmap */}
-      <Section id="roadmap">
+      <Section id="roadmap" animation="fade-right">
         <Container textAlign="center">
           <h2>Where this is going</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -415,7 +417,7 @@ function MLDoors() {
       </Section>
 
       {/* Purchase CTA */}
-      <Section background="alt" id="purchase">
+      <Section background="alt" id="purchase" animation="zoom">
         <Container textAlign="center">
           <h2>Ready to transform your door design workflow?</h2>
           <p className="content-max-width-500 margin-top-6 text-lg">

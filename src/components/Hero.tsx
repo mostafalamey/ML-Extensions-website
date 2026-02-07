@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Button } from "./Button";
+import { heroText, heroFade } from "../utils/animations";
 
 interface HeroProps {
   title: string;
@@ -64,9 +66,31 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="hero-overlay"></div>
 
       <div className="hero-content">
-        <h1 className="hero-title">{title}</h1>
-        <p className="hero-subtitle">{subtitle}</p>
-        <div className="hero-cta">
+        <motion.h1 
+          className="hero-title"
+          initial="hidden"
+          animate="visible"
+          variants={heroText}
+        >
+          {title}
+        </motion.h1>
+        <motion.p 
+          className="hero-subtitle"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, x: -50 },
+            visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] } }
+          }}
+        >
+          {subtitle}
+        </motion.p>
+        <motion.div 
+          className="hero-cta"
+          initial="hidden"
+          animate="visible"
+          variants={heroFade}
+        >
           <Button
             href={primaryButtonHref}
             variant="primary"
@@ -83,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({
               {secondaryButtonText}
             </Button>
           )}
-        </div>
+        </motion.div>
 
         {/* Carousel dots indicator */}
         {isCarousel && (

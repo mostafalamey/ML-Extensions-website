@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   CheckSquare,
   Package,
@@ -21,6 +22,7 @@ import {
   ImageGallery,
   type GalleryImage,
 } from "../components";
+import { staggerItem } from "../utils/animations";
 
 // ML Kitchens Features Data
 const mlKitchensFeatures = [
@@ -191,7 +193,7 @@ function MLKitchens() {
       />
 
       {/* The Problem */}
-      <Section id="problem">
+      <Section id="problem" animation="fade-up">
         <Container textAlign="center">
           <h2>The problem</h2>
           <p className="content-max-width-700 margin-top-6 text-lg">
@@ -204,8 +206,8 @@ function MLKitchens() {
       </Section>
 
       {/* What It Does */}
-      <Section background="alt" id="solution">
-        <Container>
+      <Section background="alt" id="solution" animation="fade-left">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">What it does</h2>
 
           <div className="content-max-width-800 margin-bottom-12">
@@ -219,56 +221,56 @@ function MLKitchens() {
             <div className="feature-list">
               <h3 className="margin-bottom-6">Key capabilities:</h3>
               <ul className="feature-list-unstyled">
-                <li className="feature-list-item">
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     160+ professional cabinet presets with metric and imperial
                     support
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Live 3D preview with smooth animations and real-time
                     feedback
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Six-tab configuration interface for every design detail
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Multiple door, drawer, hardware, and material libraries
                   </span>
-                </li>
+                </motion.li>
               </ul>
             </div>
 
             <div className="feature-list">
               <h3 className="margin-bottom-6">&nbsp;</h3>
               <ul className="feature-list-unstyled">
-                <li className="feature-list-item">
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Integrated appliance placement and countertop generation
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Professional schedule manager with CSV/HTML exports
                   </span>
-                </li>
-                <li className="feature-list-item">
+                </motion.li>
+                <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
                     Fully compatible with manufacturing tools like OpenCutList
                   </span>
-                </li>
+                </motion.li>
               </ul>
             </div>
           </div>
@@ -295,7 +297,7 @@ function MLKitchens() {
       </Section>
 
       {/* Gallery */}
-      <Section background="alt" id="gallery">
+      <Section background="alt" id="gallery" animation="zoom">
         <Container>
           <h2 className="text-center margin-bottom-12">Project Gallery</h2>
           <p className="content-max-width-700 text-center margin-bottom-12 text-lg">
@@ -307,63 +309,63 @@ function MLKitchens() {
       </Section>
 
       {/* Workflow */}
-      <Section id="workflow">
-        <Container>
+      <Section id="workflow" animation="fade-right">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">
             How it fits into your workflow
           </h2>
 
           <div className="grid-2 grid-gap-12">
             <div className="workflow-steps">
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">1</span>
                 <div>
                   <h4>Start with presets</h4>
                   <p>Place cabinets using presets or custom dimensions.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">2</span>
                 <div>
                   <h4>Customize everything</h4>
                   <p>Adjust geometry, materials, hardware, and appliances.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">3</span>
                 <div>
                   <h4>Preview changes</h4>
                   <p>See updates instantly in real-time 3D.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <div className="workflow-steps">
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">4</span>
                 <div>
                   <h4>Generate documentation</h4>
                   <p>Create schedules and production documentation.</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="workflow-step workflow-step-spacing">
+              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
                 <span className="step-number">5</span>
                 <div>
                   <h4>Export results</h4>
                   <p>Print or export finished designs and schedules.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </Container>
       </Section>
 
       {/* Who It's For */}
-      <Section background="alt" id="who-its-for">
-        <Container>
+      <Section background="alt" id="who-its-for" animation="fade-up">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">Who this is for</h2>
 
           <div className="grid-3">
@@ -401,7 +403,7 @@ function MLKitchens() {
       </Section>
 
       {/* Compatibility */}
-      <Section id="compatibility">
+      <Section id="compatibility" animation="fade-left">
         <Container textAlign="center">
           <h2>Compatibility</h2>
           <div className="compatibility-wrapper">
@@ -428,7 +430,7 @@ function MLKitchens() {
       </Section>
 
       {/* Documentation */}
-      <Section background="alt" id="documentation">
+      <Section background="alt" id="documentation" animation="scale">
         <Container textAlign="center">
           <h2>Learn and master</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -448,7 +450,7 @@ function MLKitchens() {
       </Section>
 
       {/* Roadmap */}
-      <Section id="roadmap">
+      <Section id="roadmap" animation="fade-right">
         <Container textAlign="center">
           <h2>Where this is going</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -460,7 +462,7 @@ function MLKitchens() {
       </Section>
 
       {/* Purchase CTA */}
-      <Section background="alt" id="purchase">
+      <Section background="alt" id="purchase" animation="zoom">
         <Container textAlign="center">
           <h2>Ready to transform your kitchen design workflow?</h2>
           <p className="content-max-width-500 margin-top-6 text-lg">

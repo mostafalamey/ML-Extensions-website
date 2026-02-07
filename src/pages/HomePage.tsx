@@ -103,7 +103,7 @@ function HomePage() {
       />
 
       {/* Introduction Section */}
-      <Section id="introduction">
+      <Section id="introduction" animation="fade-up">
         <Container textAlign="center">
           <h2>Built for real production workflows</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -119,8 +119,8 @@ function HomePage() {
       </Section>
 
       {/* Products Overview */}
-      <Section background="alt" id="products">
-        <Container>
+      <Section background="alt" id="products" animation="scale">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">Extensions</h2>
 
           <div className="grid-2">
@@ -144,8 +144,8 @@ function HomePage() {
       </Section>
 
       {/* Who It's For */}
-      <Section id="who-its-for">
-        <Container>
+      <Section id="who-its-for" animation="fade-right">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">
             Designed for professionals
           </h2>
@@ -179,8 +179,8 @@ function HomePage() {
       </Section>
 
       {/* Core Values */}
-      <Section background="alt" id="values">
-        <Container>
+      <Section background="alt" id="values" animation="fade-left">
+        <Container stagger>
           <h2 className="text-center margin-bottom-16">
             What drives ML Extensions
           </h2>
@@ -214,8 +214,8 @@ function HomePage() {
       </Section>
 
       {/* Learn Section */}
-      <Section id="learn">
-        <Container textAlign="center">
+      <Section id="learn" animation="zoom">
+        <Container textAlign="center" stagger>
           <h2>Learn & Documentation</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
             Every ML Extension includes clear documentation, visual guides, and
@@ -242,8 +242,8 @@ function HomePage() {
       </Section>
 
       {/* About Section */}
-      <Section background="alt" id="about">
-        <Container textAlign="center">
+      <Section background="alt" id="about" animation="fade-up">
+        <Container textAlign="center" stagger>
           <h2>About ML Extensions</h2>
           <p className="content-max-width-700 margin-top-6 text-lg">
             ML Extensions was founded with a simple mission: build
@@ -276,7 +276,7 @@ function HomePage() {
       </Section>
 
       {/* Contact Section */}
-      <Section id="contact">
+      <Section id="contact" animation="fade-right">
         <Container textAlign="center">
           <h2>Get in Touch</h2>
           <p className="content-max-width-600 margin-top-6 text-lg">
@@ -302,7 +302,7 @@ function HomePage() {
       </Section>
 
       {/* Closing CTA */}
-      <Section background="alt" id="closing-cta">
+      <Section background="alt" id="closing-cta" animation="scale">
         <Container textAlign="center">
           <h2>Build better models. Faster.</h2>
           <p className="content-max-width-500 margin-top-6 text-lg">

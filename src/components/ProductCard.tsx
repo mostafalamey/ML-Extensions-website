@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { staggerItem } from '../utils/animations';
 
 interface ProductCardProps {
   title: string;
@@ -35,22 +37,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   if (href) {
     if (href.startsWith('http')) {
       return (
-        <a href={href} className="product-card" target="_blank" rel="noopener noreferrer">
+        <motion.a 
+          href={href} 
+          className="product-card" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          variants={staggerItem}
+        >
           {content}
-        </a>
+        </motion.a>
       );
     } else {
+      const MotionLink = motion(Link);
       return (
-        <Link to={href} className="product-card">
+        <MotionLink 
+          to={href} 
+          className="product-card"
+          variants={staggerItem}
+        >
           {content}
-        </Link>
+        </MotionLink>
       );
     }
   }
 
   return (
-    <div className="product-card" onClick={onClick} style={{ cursor: onClick ? 'pointer' : 'default' }}>
+    <motion.div 
+      className="product-card" 
+      onClick={onClick} 
+      style={{ cursor: onClick ? 'pointer' : 'default' }}
+      variants={staggerItem}
+    >
       {content}
-    </div>
+    </motion.div>
   );
 };

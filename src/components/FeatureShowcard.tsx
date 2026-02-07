@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Modal } from './Modal';
+import { staggerItem } from '../utils/animations';
 
 interface FeatureShowcardProps {
   title: string;
@@ -28,10 +30,14 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
 
   return (
     <>
-      <div 
+      <motion.div 
         className={`feature-showcard clickable ${className}`}
         onClick={handleCardClick}
         style={{ cursor: 'pointer' }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerItem}
       >
         <div className="feature-showcard-media">
           {gifUrl ? (
@@ -53,7 +59,7 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
             <span>Click to view {gifUrl ? 'demo' : 'details'}</span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <Modal 
         isOpen={isModalOpen} 

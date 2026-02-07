@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { staggerItem } from '../utils/animations';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -14,10 +16,13 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`feature-card ${className}`}>
+    <motion.div 
+      className={`feature-card ${className}`}
+      variants={staggerItem}
+    >
       <div className="feature-icon">{icon}</div>
       <h3 className="feature-title">{title}</h3>
       <p className="feature-description">{description}</p>
-    </div>
+    </motion.div>
   );
 };
