@@ -1,39 +1,46 @@
-import React from 'react';
+import React from "react";
 
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: "primary" | "secondary" | "ghost";
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?:
+    | ((e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void)
+    | (() => void);
   href?: string;
   target?: string;
   className?: string;
   icon?: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({ 
-  variant = 'primary', 
-  children, 
-  onClick, 
-  href, 
+export const Button: React.FC<ButtonProps> = ({
+  variant = "primary",
+  children,
+  onClick,
+  href,
   target,
-  className = '',
-  icon 
+  className = "",
+  icon,
 }) => {
   const baseClass = `btn btn-${variant} ${className}`;
   const content = (
     <>
-      {icon && <span style={{ marginRight: 'var(--spacing-2)' }}>{icon}</span>}
+      {icon && <span className="btn-icon">{icon}</span>}
       {children}
     </>
   );
 
   if (href) {
     return (
-      <a 
-        href={href} 
+      <a
+        href={href}
         className={baseClass}
         target={target}
-        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
+        onClick={
+          onClick as
+            | ((e: React.MouseEvent<HTMLAnchorElement>) => void)
+            | undefined
+        }
       >
         {content}
       </a>
@@ -41,7 +48,14 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button className={baseClass} onClick={onClick}>
+    <button
+      className={baseClass}
+      onClick={
+        onClick as
+          | ((e: React.MouseEvent<HTMLButtonElement>) => void)
+          | undefined
+      }
+    >
       {content}
     </button>
   );

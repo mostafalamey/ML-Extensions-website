@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ExternalLink } from 'lucide-react';
-import { Button } from './Button';
-import MLExtensionsLogo from '../assets/ml_extensions_logo.svg';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X, ExternalLink } from "lucide-react";
+import { Button } from "./Button";
+import MLExtensionsLogo from "../assets/ml_extensions_logo.svg";
 
 interface ProductNavbarProps {
   productName: string;
@@ -10,34 +10,98 @@ interface ProductNavbarProps {
   className?: string;
 }
 
-export const ProductNavbar: React.FC<ProductNavbarProps> = ({ 
+export const ProductNavbar: React.FC<ProductNavbarProps> = ({
   productName,
-  gumroadUrl, 
-  className = '' 
+  gumroadUrl,
+  className = "",
 }) => {
   const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("problem");
+  const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
+  const navLinksRef = React.useRef<{ [key: string]: HTMLAnchorElement | null }>(
+    {},
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+
+      // Hide navbar when scrolling down past threshold
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
         setIsNavbarHidden(true);
-      } else {
+      }
+      // Show navbar when scrolling up or near top
+      else if (currentScrollY < lastScrollY || currentScrollY <= 80) {
         setIsNavbarHidden(false);
       }
-      
+
       setLastScrollY(currentScrollY);
+
+      // Determine active section - only update if we find a section with a navbar link
+      const sections = navItems.map((item) => item.sectionId);
+      let foundSection: string | null = null;
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is in viewport (with some offset for navbar)
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            const navItemId = navItems.find(
+              (item) => item.sectionId === sectionId,
+            )?.id;
+            if (navItemId) {
+              foundSection = navItemId;
+              break;
+            }
+          }
+        }
+      }
+
+      // Only update active section if we found a valid navbar section
+      if (foundSection) {
+        setActiveSection(foundSection);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Call once to set initial state
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
+  // Update underline position when active section changes
+  useEffect(() => {
+    const updateUnderlinePosition = () => {
+      const activeLink = navLinksRef.current[activeSection];
+      const wrapper = activeLink?.closest(".product-navbar-links-wrapper");
+
+      if (activeLink && wrapper) {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+
+        setUnderlineStyle({
+          left: linkRect.left - wrapperRect.left,
+          width: linkRect.width,
+        });
+      }
+    };
+
+    updateUnderlinePosition();
+    window.addEventListener("resize", updateUnderlinePosition);
+
+    // Small delay to ensure DOM is ready
+    const timeout = setTimeout(updateUnderlinePosition, 100);
+
+    return () => {
+      window.removeEventListener("resize", updateUnderlinePosition);
+      clearTimeout(timeout);
+    };
+  }, [activeSection]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -47,109 +111,105 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    e.preventDefault();
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100; // Offset for fixed navbar
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const navItems = [
-    { href: '#problem', label: 'Problem' },
-    { href: '#solution', label: 'Solution' },
-    { href: '#features', label: 'Features' },
-    { href: '#workflow', label: 'Workflow' },
-    { href: '#who-its-for', label: 'Users' },
-    { href: '#compatibility', label: 'Compatibility' }
+    { id: "problem", href: "#problem", label: "Problem", sectionId: "problem" },
+    {
+      id: "solution",
+      href: "#solution",
+      label: "Solution",
+      sectionId: "solution",
+    },
+    {
+      id: "features",
+      href: "#features",
+      label: "Features",
+      sectionId: "features",
+    },
+    { id: "gallery", href: "#gallery", label: "Gallery", sectionId: "gallery" },
+    {
+      id: "workflow",
+      href: "#workflow",
+      label: "Workflow",
+      sectionId: "workflow",
+    },
+    {
+      id: "who-its-for",
+      href: "#who-its-for",
+      label: "Users",
+      sectionId: "who-its-for",
+    },
+    {
+      id: "compatibility",
+      href: "#compatibility",
+      label: "Compatibility",
+      sectionId: "compatibility",
+    },
   ];
 
-  const linkStyle = {
-    color: 'var(--color-text-primary)',
-    textDecoration: 'none',
-    padding: 'var(--spacing-2) var(--spacing-3)',
-    borderRadius: 'var(--border-radius)',
-    transition: 'var(--transition)',
-    fontSize: 'var(--font-size-sm)',
-    fontWeight: '500',
-    letterSpacing: '0.02em',
-    textTransform: 'uppercase' as const,
-    whiteSpace: 'nowrap' as const
-  };
-
-  const linkHoverStyle = {
-    color: 'var(--color-accent)',
-    backgroundColor: 'rgba(218, 165, 32, 0.1)'
-  };
-
   return (
-    <nav className={`product-navbar ${isNavbarHidden ? 'hidden' : ''} ${className}`}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%'
-      }}>
-        
+    <nav
+      className={`product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
+    >
+      <div className="product-navbar-container">
         {/* Brand Section with Home Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)', flexShrink: 0 }}>
-          <a 
-            href="#" 
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            style={{
-              color: 'var(--color-accent)',
-              textDecoration: 'none',
-              fontSize: 'var(--font-size-lg)',
-              fontWeight: 'bold',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              cursor: 'pointer'
-            }}
-          >
-            {productName}
+        <div className="product-navbar-brand">
+          <a href="/" className="product-navbar-brand-link">
+            ML Extensions
           </a>
-          
-          <Link 
-            to="/" 
-            style={{
-              ...linkStyle,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 'var(--spacing-1)',
-              color: 'var(--color-text-secondary)',
-              flexShrink: 0,
-              minWidth: 'auto'
-            }}
-            onMouseEnter={(e) => Object.assign(e.currentTarget.style, linkHoverStyle)}
-            onMouseLeave={(e) => Object.assign(e.currentTarget.style, { backgroundColor: 'transparent', color: 'var(--color-text-secondary)' })}
-          >
-            <img src={MLExtensionsLogo} alt="Home" width="\36" height="36" />
-            <span>Home</span>
-          </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 'var(--spacing-2)'
-          }} 
-          className="product-navbar-desktop-nav"
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              style={linkStyle}
-              onMouseEnter={(e) => Object.assign(e.currentTarget.style, linkHoverStyle)}
-              onMouseLeave={(e) => Object.assign(e.currentTarget.style, { backgroundColor: 'transparent' })}
-              onClick={closeMobileMenu}
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className="product-navbar-desktop-nav">
+          <div className="product-navbar-links-wrapper">
+            <div className="product-navbar-links">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  ref={(el) => (navLinksRef.current[item.id] = el)}
+                  href={item.href}
+                  className={`product-navbar-link ${activeSection === item.id ? "active" : ""}`}
+                  onClick={(e) => handleNavClick(e, item.sectionId)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+            {/* Dynamic positioning - inline styles required for calculated transform/width values */}
+            <span
+              className="product-navbar-underline"
+              style={{
+                transform: `translateX(${underlineStyle.left}px)`,
+                width: `${underlineStyle.width}px`,
+              }}
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         {/* CTA and Mobile Menu Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-3)' }}>
+        <div className="product-navbar-cta-mobile-wrapper">
           <div className="product-navbar-desktop-cta">
-            <Button 
+            <Button
               href={gumroadUrl}
               target="_blank"
               variant="primary"
@@ -159,17 +219,11 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
               Buy on Gumroad
             </Button>
           </div>
-          
+
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--color-text)',
-              cursor: 'pointer',
-              padding: 'var(--spacing-2)'
-            }}
+            aria-label="Toggle menu"
             className="product-navbar-mobile-menu-button"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -178,43 +232,24 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div style={{
-            position: 'fixed',
-            top: 'calc(var(--spacing-6) + 70px)',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            maxWidth: '900px',
-            width: 'calc(100% - 48px)',
-            background: 'rgba(28, 28, 28, 0.95)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--border-radius-lg)',
-            boxShadow: 'var(--shadow-lg)',
-            padding: 'var(--spacing-4)'
-          }} className="product-navbar-mobile-menu">
-            <div style={{ 
-              display: 'flex', 
-              flexDirection: 'column',
-              gap: 'var(--spacing-3)',
-              marginBottom: 'var(--spacing-4)'
-            }}>
+          <div className="product-navbar-mobile-menu">
+            <div className="product-navbar-mobile-menu-nav">
               {navItems.map((item) => (
                 <a
-                  key={item.label}
+                  key={item.id}
                   href={item.href}
-                  style={{
-                    ...linkStyle,
-                    textAlign: 'center',
-                    padding: 'var(--spacing-3)'
+                  className="product-navbar-mobile-nav-link"
+                  onClick={(e) => {
+                    handleNavClick(e, item.sectionId);
+                    closeMobileMenu();
                   }}
-                  onClick={closeMobileMenu}
                 >
                   {item.label}
                 </a>
               ))}
             </div>
-            
-            <Button 
+
+            <Button
               href={gumroadUrl}
               target="_blank"
               variant="primary"
