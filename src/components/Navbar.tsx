@@ -85,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
   useEffect(() => {
     const updateUnderlinePosition = () => {
       const activeLink = navLinksRef.current[activeSection];
-      const wrapper = activeLink?.closest(".navbar-links-wrapper");
+      const wrapper = activeLink?.closest(".base-navbar-links-wrapper");
 
       if (activeLink && wrapper) {
         const wrapperRect = wrapper.getBoundingClientRect();
@@ -157,9 +157,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
 
   return (
     <>
-      <nav className={`navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}>
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo">
+      <nav className={`base-navbar navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}>
+        <div className="base-navbar-container">
+          <Link to="/" className="base-navbar-logo">
             <img
               src={MLExtensionsLogo}
               alt="ML Extensions"
@@ -169,8 +169,8 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             ML Extensions
           </Link>
 
-          <div className="navbar-links-wrapper">
-            <ul className="navbar-links">
+          <div className="base-navbar-links-wrapper">
+            <ul className="base-navbar-links navbar-links">
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a
@@ -178,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
                       navLinksRef.current[item.id] = el;
                     }}
                     href={item.href}
-                    className={`navbar-link ${activeSection === item.id ? "active" : ""}`}
+                    className={`base-navbar-link ${activeSection === item.id ? "active" : ""}`}
                     onClick={(e) => handleNavClick(e, item.sectionId)}
                   >
                     {item.label}
@@ -188,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             </ul>
             {/* Dynamic positioning - inline styles required for calculated transform/width values */}
             <span
-              className="navbar-underline"
+              className="base-navbar-underline navbar-underline"
               style={{
                 transform: `translateX(${underlineStyle.left}px)`,
                 width: `${underlineStyle.width}px`,
@@ -200,14 +200,14 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
           <Button
             href="#products"
             variant="primary"
-            className="navbar-cta"
+            className="base-navbar-cta navbar-cta"
             onClick={(e) => handleNavClick(e, "products")}
           >
             View Products
           </Button>
 
           <button
-            className="mobile-menu-toggle"
+            className="base-mobile-menu-toggle mobile-menu-toggle"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -217,9 +217,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-        <div className="mobile-menu-header">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+      <div className={`base-mobile-menu mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="base-mobile-menu-header">
+          <Link to="/" className="base-navbar-logo" onClick={closeMobileMenu}>
             <img
               src={MLExtensionsLogo}
               alt="ML Extensions"
@@ -229,7 +229,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             ML Extensions
           </Link>
           <button
-            className="mobile-menu-close"
+            className="base-mobile-menu-close mobile-menu-close"
             onClick={closeMobileMenu}
             aria-label="Close menu"
           >
@@ -237,7 +237,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
           </button>
         </div>
 
-        <ul className="mobile-menu-links">
+        <ul className="base-mobile-menu-links">
           {navItems.map((item) => (
             <li key={item.id}>
               <a
@@ -254,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
           ))}
         </ul>
 
-        <div className="mobile-menu-footer">
+        <div className="base-mobile-menu-footer">
           <Button
             href="#products"
             variant="primary"

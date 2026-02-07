@@ -78,7 +78,7 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
   useEffect(() => {
     const updateUnderlinePosition = () => {
       const activeLink = navLinksRef.current[activeSection];
-      const wrapper = activeLink?.closest(".product-navbar-links-wrapper");
+      const wrapper = activeLink?.closest(".base-navbar-links-wrapper");
 
       if (activeLink && wrapper) {
         const wrapperRect = wrapper.getBoundingClientRect();
@@ -182,12 +182,12 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
   return (
     <>
       <nav
-        className={`product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
+        className={`base-navbar product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
       >
-        <div className="product-navbar-container">
+        <div className="base-navbar-container">
           {/* Brand Section with Home Button */}
           <div className="product-navbar-brand">
-            <Link to="/" className="navbar-logo">
+            <Link to="/" className="base-navbar-logo navbar-logo">
             <img
               src={MLExtensionsLogo}
               alt="ML Extensions"
@@ -200,25 +200,26 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
 
           {/* Desktop Navigation */}
           <div className="product-navbar-desktop-nav">
-            <div className="product-navbar-links-wrapper">
-              <div className="product-navbar-links">
+            <div className="base-navbar-links-wrapper product-navbar-links-wrapper">
+              <ul className="base-navbar-links product-navbar-links">
                 {navItems.map((item) => (
-                  <a
-                    key={item.id}
-                    ref={(el) => {
-                      navLinksRef.current[item.id] = el;
-                    }}
-                    href={item.href}
-                    className={`product-navbar-link ${activeSection === item.id ? "active" : ""}`}
-                    onClick={(e) => handleNavClick(e, item.sectionId)}
-                  >
-                    {item.label}
-                  </a>
+                  <li key={item.id}>
+                    <a
+                      ref={(el) => {
+                        navLinksRef.current[item.id] = el;
+                      }}
+                      href={item.href}
+                      className={`base-navbar-link ${activeSection === item.id ? "active" : ""}`}
+                      onClick={(e) => handleNavClick(e, item.sectionId)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
               {/* Dynamic positioning - inline styles required for calculated transform/width values */}
               <span
-                className="product-navbar-underline"
+                className="base-navbar-underline product-navbar-underline"
                 style={{
                   transform: `translateX(${underlineStyle.left}px)`,
                   width: `${underlineStyle.width}px`,
@@ -236,7 +237,7 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
                 target="_blank"
                 variant="primary"
                 icon={<ExternalLink size={16} />}
-                className="product-navbar-cta-button"
+                className="base-navbar-cta product-navbar-cta-button"
               >
                 Buy on Gumroad
               </Button>
@@ -246,7 +247,7 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
             <button
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
-              className="product-navbar-mobile-menu-button"
+              className="base-mobile-menu-toggle product-navbar-mobile-menu-button"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -255,24 +256,23 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
       </nav>
 
       {/* Mobile Menu - Outside nav to prevent clipping */}
-      {isMobileMenuOpen && (
-        <div className="product-navbar-mobile-menu">
-          <div className="product-navbar-mobile-menu-header">
-            <div className="product-navbar-mobile-brand">{productName}</div>
-            <button
-              onClick={closeMobileMenu}
-              className="product-navbar-mobile-menu-close"
-              aria-label="Close menu"
-            >
-              <X size={28} />
-            </button>
-          </div>
+      <div className={`base-mobile-menu product-navbar-mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <div className="base-mobile-menu-header">
+          <div className="product-navbar-mobile-brand">{productName}</div>
+          <button
+            onClick={closeMobileMenu}
+            className="base-mobile-menu-close"
+            aria-label="Close menu"
+          >
+            <X size={28} />
+          </button>
+        </div>
 
-          <div className="product-navbar-mobile-menu-content">
-            <div className="product-navbar-mobile-menu-nav">
-              {navItems.map((item) => (
+        <div className="product-navbar-mobile-menu-content">
+          <ul className="base-mobile-menu-links">
+            {navItems.map((item) => (
+              <li key={item.id}>
                 <a
-                  key={item.id}
                   href={item.href}
                   className="product-navbar-mobile-nav-link"
                   onClick={(e) => {
@@ -282,9 +282,11 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
                 >
                   {item.label}
                 </a>
-              ))}
-            </div>
+              </li>
+            ))}
+          </ul>
 
+          <div className="base-mobile-menu-footer">
             <Button
               href={gumroadUrl}
               target="_blank"
@@ -296,7 +298,7 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
             </Button>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
