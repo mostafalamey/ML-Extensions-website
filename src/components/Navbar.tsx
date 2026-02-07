@@ -110,6 +110,19 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
     };
   }, [activeSection]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -241,16 +254,18 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
           ))}
         </ul>
 
-        <Button
-          href="#products"
-          variant="primary"
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            handleNavClick(e, "products");
-            closeMobileMenu();
-          }}
-        >
-          View Products
-        </Button>
+        <div className="mobile-menu-footer">
+          <Button
+            href="#products"
+            variant="primary"
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              handleNavClick(e, "products");
+              closeMobileMenu();
+            }}
+          >
+            View Products
+          </Button>
+        </div>
       </div>
     </>
   );

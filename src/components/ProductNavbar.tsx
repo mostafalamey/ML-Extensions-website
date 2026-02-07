@@ -103,6 +103,19 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
     };
   }, [activeSection]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -167,72 +180,87 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
   ];
 
   return (
-    <nav
-      className={`product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
-    >
-      <div className="product-navbar-container">
-        {/* Brand Section with Home Button */}
-        <div className="product-navbar-brand">
-          <a href="/" className="product-navbar-brand-link">
-            ML Extensions
-          </a>
-        </div>
+    <>
+      <nav
+        className={`product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
+      >
+        <div className="product-navbar-container">
+          {/* Brand Section with Home Button */}
+          <div className="product-navbar-brand">
+            <a href="/" className="product-navbar-brand-link">
+              ML Extensions
+            </a>
+          </div>
 
-        {/* Desktop Navigation */}
-        <div className="product-navbar-desktop-nav">
-          <div className="product-navbar-links-wrapper">
-            <div className="product-navbar-links">
-              {navItems.map((item) => (
-                <a
-                  key={item.id}
-                  ref={(el) => (navLinksRef.current[item.id] = el)}
-                  href={item.href}
-                  className={`product-navbar-link ${activeSection === item.id ? "active" : ""}`}
-                  onClick={(e) => handleNavClick(e, item.sectionId)}
-                >
-                  {item.label}
-                </a>
-              ))}
+          {/* Desktop Navigation */}
+          <div className="product-navbar-desktop-nav">
+            <div className="product-navbar-links-wrapper">
+              <div className="product-navbar-links">
+                {navItems.map((item) => (
+                  <a
+                    key={item.id}
+                    ref={(el) => (navLinksRef.current[item.id] = el)}
+                    href={item.href}
+                    className={`product-navbar-link ${activeSection === item.id ? "active" : ""}`}
+                    onClick={(e) => handleNavClick(e, item.sectionId)}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+              {/* Dynamic positioning - inline styles required for calculated transform/width values */}
+              <span
+                className="product-navbar-underline"
+                style={{
+                  transform: `translateX(${underlineStyle.left}px)`,
+                  width: `${underlineStyle.width}px`,
+                }}
+                aria-hidden="true"
+              />
             </div>
-            {/* Dynamic positioning - inline styles required for calculated transform/width values */}
-            <span
-              className="product-navbar-underline"
-              style={{
-                transform: `translateX(${underlineStyle.left}px)`,
-                width: `${underlineStyle.width}px`,
-              }}
-              aria-hidden="true"
-            />
           </div>
-        </div>
 
-        {/* CTA and Mobile Menu Button */}
-        <div className="product-navbar-cta-mobile-wrapper">
-          <div className="product-navbar-desktop-cta">
-            <Button
-              href={gumroadUrl}
-              target="_blank"
-              variant="primary"
-              icon={<ExternalLink size={16} />}
-              className="product-navbar-cta-button"
+          {/* CTA and Mobile Menu Button */}
+          <div className="product-navbar-cta-mobile-wrapper">
+            <div className="product-navbar-desktop-cta">
+              <Button
+                href={gumroadUrl}
+                target="_blank"
+                variant="primary"
+                icon={<ExternalLink size={16} />}
+                className="product-navbar-cta-button"
+              >
+                Buy on Gumroad
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+              className="product-navbar-mobile-menu-button"
             >
-              Buy on Gumroad
-            </Button>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu - Outside nav to prevent clipping */}
+      {isMobileMenuOpen && (
+        <div className="product-navbar-mobile-menu">
+          <div className="product-navbar-mobile-menu-header">
+            <div className="product-navbar-mobile-brand">{productName}</div>
+            <button
+              onClick={closeMobileMenu}
+              className="product-navbar-mobile-menu-close"
+              aria-label="Close menu"
+            >
+              <X size={28} />
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-            className="product-navbar-mobile-menu-button"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="product-navbar-mobile-menu">
+          <div className="product-navbar-mobile-menu-content">
             <div className="product-navbar-mobile-menu-nav">
               {navItems.map((item) => (
                 <a
@@ -259,8 +287,8 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
               Buy on Gumroad
             </Button>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 };
