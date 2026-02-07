@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "./Button";
+import MLExtensionsLogo from "../assets/ml_extensions_logo.svg";
 
 interface ProductNavbarProps {
   productName: string;
@@ -186,9 +187,15 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
         <div className="product-navbar-container">
           {/* Brand Section with Home Button */}
           <div className="product-navbar-brand">
-            <Link to="/" className="product-navbar-brand-link">
-              ML Extensions
-            </Link>
+            <Link to="/" className="navbar-logo">
+            <img
+              src={MLExtensionsLogo}
+              alt="ML Extensions"
+              width="36"
+              height="36"
+            />
+            ML Extensions
+          </Link>
           </div>
 
           {/* Desktop Navigation */}

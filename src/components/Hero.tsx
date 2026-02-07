@@ -54,60 +54,65 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section className={`hero-section ${className}`} id="home">
-      {/* Background images with crossfade transition */}
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`hero-background ${index === currentImageIndex ? "active" : ""}`}
-          style={{ backgroundImage: `url(${image})` }}
-        />
-      ))}
-
-      <div className="hero-overlay"></div>
-
-      <div className="hero-content">
-        <motion.h1 
-          className="hero-title"
-          initial="hidden"
-          animate="visible"
-          variants={heroText}
-        >
-          {title}
-        </motion.h1>
-        <motion.p 
-          className="hero-subtitle"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0, x: -30 },
-            visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] } }
-          }}
-        >
-          {subtitle}
-        </motion.p>
-        <motion.div 
-          className="hero-cta"
-          initial="hidden"
-          animate="visible"
-          variants={heroFade}
-        >
-          <Button
-            href={primaryButtonHref}
-            variant="primary"
-            target={primaryButtonTarget}
+      {/* Left content area with gradient background */}
+      <div className="hero-left-content">
+        <div className="hero-gradient-overlay"></div>
+        <div className="hero-text-content">
+          <motion.h1 
+            className="hero-title"
+            initial="hidden"
+            animate="visible"
+            variants={heroText}
           >
-            {primaryButtonText}
-          </Button>
-          {secondaryButtonText && (
+            {title}
+          </motion.h1>
+          <motion.p 
+            className="hero-subtitle"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.15, ease: [0.4, 0, 0.2, 1] } }
+            }}
+          >
+            {subtitle}
+          </motion.p>
+          <motion.div 
+            className="hero-cta"
+            initial="hidden"
+            animate="visible"
+            variants={heroFade}
+          >
             <Button
-              href={secondaryButtonHref}
-              variant="secondary"
-              target={secondaryButtonTarget}
+              href={primaryButtonHref}
+              variant="primary"
+              target={primaryButtonTarget}
             >
-              {secondaryButtonText}
+              {primaryButtonText}
             </Button>
-          )}
-        </motion.div>
+            {secondaryButtonText && (
+              <Button
+                href={secondaryButtonHref}
+                variant="secondary"
+                target={secondaryButtonTarget}
+              >
+                {secondaryButtonText}
+              </Button>
+            )}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Right image carousel area */}
+      <div className="hero-right-content">
+        {/* Background images with crossfade transition */}
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`hero-background ${index === currentImageIndex ? "active" : ""}`}
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        ))}
 
         {/* Carousel dots indicator */}
         {isCarousel && (
