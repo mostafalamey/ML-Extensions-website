@@ -1330,6 +1330,91 @@ as .modal-gif-container {
   }
 }
 
+/* Enhanced Image Gallery Modal with Animation */
+.image-gallery-modal-enhanced {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.4) 25%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.image-gallery-modal-container {
+  position: relative;
+  cursor: default;
+}
+
+.image-gallery-modal-content-enhanced {
+  position: relative;
+  border-radius: calc(var(--border-radius-lg) * var(--brm));
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  cursor: default;
+}
+
+.image-gallery-modal-img-enhanced {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--color-background);
+  display: block;
+}
+
+.image-gallery-modal-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.image-gallery-modal-controls .image-gallery-modal-close,
+.image-gallery-modal-controls .image-gallery-modal-nav,
+.image-gallery-modal-controls .image-gallery-modal-counter {
+  pointer-events: all;
+}
+
+@media (max-width: 768px) {
+  .image-gallery-modal-enhanced {
+    padding: var(--spacing-4);
+  }
+  
+  .image-gallery-modal-content-enhanced {
+    width: 90vw;
+    height: 70vh;
+    max-width: 400px;
+    aspect-ratio: 3/4; /* Portrait orientation */
+  }
+  
+  .image-gallery-modal-img-enhanced {
+    object-fit: cover; /* Cover fitting for mobile */
+  }
+  
+  .image-gallery-modal-controls .image-gallery-modal-close {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .image-gallery-modal-controls .image-gallery-modal-nav {
+    width: 48px;
+    height: 48px;
+  }
+}
+
 /* Utility Classes to Replace Inline Styles */
 
 /* Text Content Widths */
@@ -1537,4 +1622,118 @@ as .modal-gif-container {
 
 .contact-link:hover {
   text-decoration: underline;
+}
+
+/* Image Modal Styles */
+.image-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.4) 25%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.image-modal-container {
+  position: relative;
+  cursor: default;
+}
+
+.image-modal-content {
+  position: relative;
+  border-radius: calc(var(--border-radius-lg) * var(--brm));
+  corner-shape: squircle;
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  cursor: default;
+}
+
+.image-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--color-background);
+  display: block;
+}
+
+.image-modal-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-background);
+  text-align: center;
+  padding: var(--spacing-6);
+}
+
+.image-modal-placeholder-text {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.image-modal-placeholder-subtitle {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.image-modal-info {
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  pointer-events: none;
+}
+
+.image-modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-2) 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-description {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .image-modal-info {
+    bottom: -120px;
+    padding: 0 var(--spacing-4);
+  }
+  
+  .image-modal-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .image-modal-description {
+    font-size: var(--font-size-sm);
+  }
 }

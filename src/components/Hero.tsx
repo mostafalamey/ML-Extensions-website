@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./Button";
-import { heroText, heroFade } from "../utils/animations";
+import { heroText, heroFade, fadeRight } from "../utils/animations";
 
 interface HeroProps {
   title: string;
@@ -104,10 +104,14 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Right image carousel area */}
-      <div className="hero-right-content">
+      <motion.div      
+        initial="hidden"
+        animate="visible"
+        variants={fadeRight}
+        className="hero-right-content">
         {/* Background images with crossfade transition */}
         {images.map((image, index) => (
-          <div
+          <motion.div
             key={index}
             className={`hero-background ${index === currentImageIndex ? "active" : ""}`}
             style={{ backgroundImage: `url(${image})` }}
@@ -127,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({
             ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };

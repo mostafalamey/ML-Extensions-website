@@ -11,6 +11,7 @@ export { Hero } from "./Hero";
 export { Section, Container } from "./Section";
 export { Footer } from "./Footer";
 export { Modal } from "./Modal";
+export { ImageModal } from "./ImageModal";
 export { ImageGallery } from "./ImageGallery";
 export type { GalleryImage } from "./ImageGallery";
 export { SmartImage } from "./SmartImage";
