@@ -1,0 +1,102 @@
+/* Image Modal Styles */
+.image-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-6);
+  cursor: pointer;
+}
+
+.image-modal-container {
+  cursor: default;
+  position: relative;
+}
+
+.image-modal-content {
+  border-radius: calc(var(--border-radius-lg) * var(--brm));
+  corner-shape: squircle;
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+}
+
+.image-modal-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.image-modal-placeholder {
+  width: 80vw;
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent) 0%,
+    var(--color-accent-hover) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(var(--border-radius-lg) * var(--brm));
+  corner-shape: squircle;
+}
+
+.image-modal-placeholder-text {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-background);
+}
+
+.image-modal-placeholder-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-background);
+  opacity: 0.8;
+}
+
+.image-modal-info {
+  padding: var(--spacing-4);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  max-width: 90vw;
+}
+
+.image-modal-title {
+  margin: 0 0 var(--spacing-2) 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+}
+
+.image-modal-description {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .image-modal-backdrop {
+    padding: var(--spacing-4);
+  }
+
+  .image-modal-img {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+
+  .image-modal-placeholder {
+    width: 95vw;
+  }
+}

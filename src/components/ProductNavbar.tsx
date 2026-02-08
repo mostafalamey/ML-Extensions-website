@@ -11,7 +11,6 @@ interface ProductNavbarProps {
 }
 
 export const ProductNavbar: React.FC<ProductNavbarProps> = ({
-  productName,
   gumroadUrl,
   className = "",
 }) => {
@@ -182,12 +181,10 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
   return (
     <>
       <nav
-        className={`base-navbar product-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
+        className={`base-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
       >
         <div className="base-navbar-container">
-          {/* Brand Section with Home Button */}
-          <div className="product-navbar-brand">
-            <Link to="/" className="base-navbar-logo navbar-logo">
+          <Link to="/" className="base-navbar-logo navbar-logo">
             <img
               src={MLExtensionsLogo}
               alt="ML Extensions"
@@ -196,107 +193,105 @@ export const ProductNavbar: React.FC<ProductNavbarProps> = ({
             />
             ML Extensions
           </Link>
-          </div>
 
           {/* Desktop Navigation */}
-          <div className="product-navbar-desktop-nav">
-            <div className="base-navbar-links-wrapper product-navbar-links-wrapper">
-              <ul className="base-navbar-links product-navbar-links">
-                {navItems.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      ref={(el) => {
-                        navLinksRef.current[item.id] = el;
-                      }}
-                      href={item.href}
-                      className={`base-navbar-link ${activeSection === item.id ? "active" : ""}`}
-                      onClick={(e) => handleNavClick(e, item.sectionId)}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              {/* Dynamic positioning - inline styles required for calculated transform/width values */}
-              <span
-                className="base-navbar-underline product-navbar-underline"
-                style={{
-                  transform: `translateX(${underlineStyle.left}px)`,
-                  width: `${underlineStyle.width}px`,
-                }}
-                aria-hidden="true"
-              />
-            </div>
+          <div className="base-navbar-links-wrapper">
+            <ul className="base-navbar-links navbar-links">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <a
+                    ref={(el) => {
+                      navLinksRef.current[item.id] = el;
+                    }}
+                    href={item.href}
+                    className={`base-navbar-link ${activeSection === item.id ? "active" : ""}`}
+                    onClick={(e) => handleNavClick(e, item.sectionId)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {/* Dynamic positioning - inline styles required for calculated transform/width values */}
+            <span
+              className="base-navbar-underline navbar-underline"
+              style={{
+                transform: `translateX(${underlineStyle.left}px)`,
+                width: `${underlineStyle.width}px`,
+              }}
+              aria-hidden="true"
+            />
           </div>
 
           {/* CTA and Mobile Menu Button */}
-          <div className="product-navbar-cta-mobile-wrapper">
-            <div className="product-navbar-desktop-cta">
-              <Button
-                href={gumroadUrl}
-                target="_blank"
-                variant="primary"
-                icon={<ExternalLink size={16} />}
-                className="base-navbar-cta product-navbar-cta-button"
-              >
-                Buy on Gumroad
-              </Button>
-            </div>
+          <Button
+            href={gumroadUrl}
+            target="_blank"
+            variant="primary"
+            className="base-navbar-cta"
+            icon={<ExternalLink size={16} />}
+          >
+            Buy on Gumroad
+          </Button>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-              className="base-mobile-menu-toggle product-navbar-mobile-menu-button"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            className="base-mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <Menu size={24} />
+          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu - Outside nav to prevent clipping */}
-      <div className={`base-mobile-menu product-navbar-mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+      {/* Mobile Menu */}
+      <div className={`base-mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="base-mobile-menu-header">
-          <div className="product-navbar-mobile-brand">{productName}</div>
+          <Link to="/" className="base-navbar-logo" onClick={closeMobileMenu}>
+            <img
+              src={MLExtensionsLogo}
+              alt="ML Extensions"
+              width="24"
+              height="24"
+            />
+            ML Extensions
+          </Link>
           <button
+            className="base-mobile-menu-close mobile-menu-close"
             onClick={closeMobileMenu}
-            className="base-mobile-menu-close"
             aria-label="Close menu"
           >
-            <X size={28} />
+            <X size={24} />
           </button>
         </div>
 
-        <div className="product-navbar-mobile-menu-content">
-          <ul className="base-mobile-menu-links">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={item.href}
-                  className="product-navbar-mobile-nav-link"
-                  onClick={(e) => {
-                    handleNavClick(e, item.sectionId);
-                    closeMobileMenu();
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <ul className="base-mobile-menu-links">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <a
+                href={item.href}
+                className={activeSection === item.id ? "active" : ""}
+                onClick={(e) => {
+                  handleNavClick(e, item.sectionId);
+                  closeMobileMenu();
+                }}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-          <div className="base-mobile-menu-footer">
-            <Button
-              href={gumroadUrl}
-              target="_blank"
-              variant="primary"
-              icon={<ExternalLink size={16} />}
-              className="product-navbar-mobile-cta-button"
-            >
-              Buy on Gumroad
-            </Button>
-          </div>
+        <div className="base-mobile-menu-footer">
+          <Button
+            href={gumroadUrl}
+            target="_blank"
+            variant="primary"
+            icon={<ExternalLink size={16} />}
+          >
+            Buy on Gumroad
+          </Button>
         </div>
       </div>
     </>

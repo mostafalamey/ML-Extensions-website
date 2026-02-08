@@ -1,0 +1,126 @@
+/* Utility Classes to Replace Inline Styles */
+
+/* Text Content Widths */
+.content-max-width-700 {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.content-max-width-600 {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-max-width-800 {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.content-max-width-500 {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Margin Utilities */
+.margin-top-6 {
+  margin-top: var(--spacing-6);
+}
+
+.margin-top-8 {
+  margin-top: var(--spacing-8);
+}
+
+.margin-bottom-6 {
+  margin-bottom: var(--spacing-6);
+}
+
+.margin-bottom-8 {
+  margin-bottom: var(--spacing-8);
+}
+
+.margin-bottom-12 {
+  margin-bottom: var(--spacing-12);
+}
+
+.margin-bottom-16 {
+  margin-bottom: var(--spacing-16);
+}
+
+/* Text Sizes */
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+/* Grid Gaps */
+.grid-gap-8 {
+  gap: var(--spacing-8);
+}
+
+.grid-gap-12 {
+  gap: var(--spacing-12);
+}
+
+/* Feature Lists */
+.feature-list-unstyled {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-4);
+}
+
+.feature-list-icon {
+  color: var(--color-accent);
+  margin-right: var(--spacing-3);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Compatibility Grid */
+.compatibility-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: var(--spacing-8);
+}
+
+.compatibility-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-6);
+  text-align: left;
+}
+
+.compatibility-item-title {
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-2);
+}
+
+/* Homepage Specific Styles */
+.homepage-section-margin {
+  margin-bottom: var(--spacing-20);
+}
+
+.homepage-subtitle-margin {
+  margin-bottom: var(--spacing-16);
+}
+
+.contact-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  align-items: center;
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-6);
+}
+
+.contact-link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}

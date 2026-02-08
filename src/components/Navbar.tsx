@@ -157,7 +157,9 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
 
   return (
     <>
-      <nav className={`base-navbar navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}>
+      <nav
+        className={`base-navbar ${isNavbarHidden ? "hidden" : ""} ${className}`}
+      >
         <div className="base-navbar-container">
           <Link to="/" className="base-navbar-logo">
             <img
@@ -169,6 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             ML Extensions
           </Link>
 
+          {/* Desktop Navigation */}
           <div className="base-navbar-links-wrapper">
             <ul className="base-navbar-links navbar-links">
               {navItems.map((item) => (
@@ -197,17 +200,19 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
             />
           </div>
 
+          {/* CTA and Mobile Menu Button */}
           <Button
             href="#products"
             variant="primary"
-            className="base-navbar-cta navbar-cta"
+            className="base-navbar-cta"
             onClick={(e) => handleNavClick(e, "products")}
           >
             View Products
           </Button>
 
+          {/* Mobile Menu Button */}
           <button
-            className="base-mobile-menu-toggle mobile-menu-toggle"
+            className="base-mobile-menu-toggle"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -217,7 +222,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className = "" }) => {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`base-mobile-menu mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+      <div className={`base-mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
         <div className="base-mobile-menu-header">
           <Link to="/" className="base-navbar-logo" onClick={closeMobileMenu}>
             <img

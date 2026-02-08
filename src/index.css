@@ -13,12 +13,13 @@
   /* Neutrals & Backgrounds */
   --color-background: #111111;
   --color-background-alt: #0d0d0d;
+  --color-background-light: #363636;
   --color-surface: #1c1c1c;
   --color-surface-elevated: #252525;
   --color-surface-glass: rgba(28, 28, 28, 0.8);
   --color-border: #2a2a2a;
   --color-border-accent: #3a3a3a;
-  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-overlay: rgba(0, 0, 0, 0.2);
 
   /* Text Colors */
   --color-text-primary: #ffffff;

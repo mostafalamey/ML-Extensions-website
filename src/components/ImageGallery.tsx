@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export interface GalleryImage {
   id: string;
@@ -13,13 +12,6 @@ interface ImageGalleryProps {
   scrollSpeed?: number;
 }
 
-interface ImageDimensions {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
-
 export const ImageGallery: React.FC<ImageGalleryProps> = ({
   images,
   scrollSpeed = 0.5,
@@ -28,25 +20,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [sourceDimensions, setSourceDimensions] = useState<ImageDimensions | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const scrollIntervalRef = useRef<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-  const imageRefs = useRef<{ [key: string]: HTMLImageElement | null }>({});
-
-  // Handle mobile detection and window resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile(); // Initial check
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   // Create a duplicated array for infinite scroll effect
   const duplicatedImages = [...images, ...images, ...images];
@@ -57,8 +34,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       scrollIntervalRef.current = window.setInterval(() => {
         setScrollPosition((prev) => {
           const newPosition = prev + scrollSpeed;
-          // Calculate item width based on screen size
-          const itemWidth = isMobile ? 220 : 350;
+          const itemWidth = 350; // Item width from CSS
           // Reset when we've scrolled through one full set
           if (newPosition >= images.length * itemWidth) {
             return 0;
@@ -79,86 +55,74 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
         clearInterval(scrollIntervalRef.current);
       }
     };
-  }, [hoveredIndex, selectedImage, images.length, scrollSpeed, isMobile]);
+  }, [hoveredIndex, selectedImage, images.length, scrollSpeed]);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!selectedImage) return;
-      
+
       switch (event.key) {
-        case 'ArrowLeft':
+        case "ArrowLeft":
           event.preventDefault();
           handlePrevImage();
           break;
-        case 'ArrowRight':
+        case "ArrowRight":
           event.preventDefault();
           handleNextImage();
           break;
-        case 'Escape':
+        case "Escape":
           event.preventDefault();
-          handleCloseModal();
+          handleClosePopup();
           break;
       }
     };
 
     if (selectedImage) {
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     };
   }, [selectedImage, selectedImageIndex]);
 
-  const handleImageClick = (image: GalleryImage, e: React.MouseEvent, imageIndex?: number) => {
+  const handleImageClick = (
+    image: GalleryImage,
+    e: React.MouseEvent,
+    imageIndex?: number,
+  ) => {
     e.stopPropagation();
-    const index = imageIndex ?? images.findIndex(img => img.id === image.id);
-    
-    // Get the clicked image element for animation
-    const target = e.currentTarget as HTMLElement;
-    const imgElement = target.querySelector('img');
-    
-    if (imgElement) {
-      const rect = imgElement.getBoundingClientRect();
-      setSourceDimensions({
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-        width: rect.width,
-        height: rect.height,
-      });
-    }
-    
+    const index = imageIndex ?? images.findIndex((img) => img.id === image.id);
     setSelectedImage(image);
     setSelectedImageIndex(index);
-    setIsModalOpen(true);
+    setIsPopupOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    // Delay clearing the selected image to allow exit animation
-    setTimeout(() => {
-      setSelectedImage(null);
-    }, 400);
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    setSelectedImage(null);
   };
 
   const handlePrevImage = () => {
-    const prevIndex = selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1;
+    const prevIndex =
+      selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1;
     setSelectedImageIndex(prevIndex);
     setSelectedImage(images[prevIndex]);
   };
 
   const handleNextImage = () => {
-    const nextIndex = selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0;
+    const nextIndex =
+      selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0;
     setSelectedImageIndex(nextIndex);
     setSelectedImage(images[nextIndex]);
   };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
-      handleCloseModal();
+      handleClosePopup();
     }
   };
 
@@ -189,68 +153,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
     touchStartRef.current = null;
   };
 
-  // Calculate center position for the modal
-  const centerX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-  const centerY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-
-  // Calculate modal size based on device
-  const modalWidth = isMobile 
-    ? Math.min(window.innerWidth * 0.9, 400)  // Portrait width for mobile
-    : Math.min(window.innerWidth * 0.9, 1000); // Desktop width
-  const modalHeight = isMobile 
-    ? window.innerHeight * 0.7  // Portrait height for mobile
-    : Math.min(window.innerHeight * 0.9, 700); // Desktop height
-
-  // Animation variants
-  const backdropVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 }
-  };
-
-  const imageVariants = {
-    hidden: sourceDimensions ? {
-      x: sourceDimensions.x - centerX,
-      y: sourceDimensions.y - centerY,
-      width: sourceDimensions.width,
-      height: sourceDimensions.height,
-      scale: 1,
-    } : { opacity: 0, scale: 0.5 },
-    visible: {
-      x: 0,
-      y: 0,
-      width: modalWidth,
-      height: modalHeight,
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        damping: 25,
-        stiffness: 120,
-        duration: 0.6,
-      }
-    },
-    exit: sourceDimensions ? {
-      x: sourceDimensions.x - centerX,
-      y: sourceDimensions.y - centerY,
-      width: sourceDimensions.width,
-      height: sourceDimensions.height,
-      scale: 1,
-      transition: {
-        type: "spring" as const,
-        damping: 25,
-        stiffness: 120,
-        duration: 0.4,
-      }
-    } : { opacity: 0, scale: 0.5, transition: { duration: 0.3 } }
-  };
-
-  const controlsVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.2 } }
-  };
-
   return (
     <>
       <div className="image-gallery" ref={galleryRef}>
@@ -268,9 +170,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               onClick={(e) => handleImageClick(image, e, index % images.length)}
             >
               <img
-                ref={(el) => {
-                  if (el) imageRefs.current[`${image.id}-${index}`] = el;
-                }}
                 src={image.url}
                 alt={image.alt}
                 className="image-gallery-img"
@@ -283,70 +182,55 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
         </div>
       </div>
 
-      {/* Enhanced Modal with Smooth Animation */}
-      <AnimatePresence mode="wait">
-        {isModalOpen && selectedImage && sourceDimensions && (
-          <motion.div 
-            className="image-gallery-modal-enhanced" 
-            onClick={handleBackdropClick}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            transition={{ duration: 0.3 }}
+      {/* Image Popup */}
+      {isPopupOpen && selectedImage && (
+        <div
+          className="image-gallery-popup"
+          onClick={handleBackdropClick}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* Close button */}
+          <button
+            className="image-gallery-popup-close"
+            onClick={handleClosePopup}
+            aria-label="Close"
           >
-            <motion.div 
-              className="image-gallery-modal-controls"
-              variants={controlsVariants}
-              initial="hidden"
-              animate="visible" 
-              exit="exit"
-            >
-              {/* Navigation arrows */}
-              <button
-                className="image-gallery-modal-nav image-gallery-modal-nav-prev"
-                onClick={handlePrevImage}
-                aria-label="Previous image"
-              >
-                <ChevronLeft size={28} />
-              </button>
-              
-              <button
-                className="image-gallery-modal-nav image-gallery-modal-nav-next"
-                onClick={handleNextImage}
-                aria-label="Next image"
-              >
-                <ChevronRight size={28} />
-              </button>
+            <X size={24} />
+          </button>
 
-              {/* Image counter */}
-              <div className="image-gallery-modal-counter">
-                {selectedImageIndex + 1} / {images.length}
-              </div>
-            </motion.div>
+          {/* Navigation arrows */}
+          <button
+            className="image-gallery-popup-nav image-gallery-popup-nav-prev"
+            onClick={handlePrevImage}
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={28} />
+          </button>
 
-            <div className="image-gallery-modal-container">
-              <motion.div
-                className="image-gallery-modal-content-enhanced"
-                variants={imageVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <div className="image-gallery-modal-img-wrapper">
-                  <img
-                    src={selectedImage.url}
-                    alt={selectedImage.alt}
-                    className="image-gallery-modal-img-enhanced"
-                  />
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <button
+            className="image-gallery-popup-nav image-gallery-popup-nav-next"
+            onClick={handleNextImage}
+            aria-label="Next image"
+          >
+            <ChevronRight size={28} />
+          </button>
+
+          {/* Image counter */}
+          <div className="image-gallery-popup-counter">
+            {selectedImageIndex + 1} / {images.length}
+          </div>
+
+          {/* Image container */}
+          <div className="image-gallery-popup-content">
+            <img
+              src={selectedImage.url}
+              alt={selectedImage.alt}
+              className="image-gallery-popup-img"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

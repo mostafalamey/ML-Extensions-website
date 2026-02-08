@@ -1,0 +1,37 @@
+/* Workflow Steps Styling */
+.workflow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+}
+
+.step-number {
+  background: var(--color-accent);
+  color: var(--color-background);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.workflow-step h4 {
+  margin: 0 0 var(--spacing-2) 0;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.workflow-step p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.workflow-step-spacing {
+  margin-bottom: var(--spacing-8);
+}
