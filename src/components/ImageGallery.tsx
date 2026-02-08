@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface GalleryImage {
   id: string;
@@ -57,8 +57,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       scrollIntervalRef.current = window.setInterval(() => {
         setScrollPosition((prev) => {
           const newPosition = prev + scrollSpeed;
-          // Reset when we've scrolled through one full set (width per item is 300px)
-          if (newPosition >= images.length * 300) {
+          // Calculate item width based on screen size
+          const itemWidth = isMobile ? 220 : 350;
+          // Reset when we've scrolled through one full set
+          if (newPosition >= images.length * itemWidth) {
             return 0;
           }
           return newPosition;
@@ -77,7 +79,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
         clearInterval(scrollIntervalRef.current);
       }
     };
-  }, [hoveredIndex, selectedImage, images.length, scrollSpeed]);
+  }, [hoveredIndex, selectedImage, images.length, scrollSpeed, isMobile]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -302,14 +304,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
               animate="visible" 
               exit="exit"
             >
-              <button
-                className="image-gallery-modal-close"
-                onClick={handleCloseModal}
-                aria-label="Close"
-              >
-                <X size={32} />
-              </button>
-              
               {/* Navigation arrows */}
               <button
                 className="image-gallery-modal-nav image-gallery-modal-nav-prev"
@@ -341,11 +335,13 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                 animate="visible"
                 exit="exit"
               >
-                <img
-                  src={selectedImage.url}
-                  alt={selectedImage.alt}
-                  className="image-gallery-modal-img-enhanced"
-                />
+                <div className="image-gallery-modal-img-wrapper">
+                  <img
+                    src={selectedImage.url}
+                    alt={selectedImage.alt}
+                    className="image-gallery-modal-img-enhanced"
+                  />
+                </div>
               </motion.div>
             </div>
           </motion.div>
