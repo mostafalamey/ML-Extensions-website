@@ -133,7 +133,10 @@ function MLDoors() {
         primaryButtonTarget="_blank"
         secondaryButtonText="View Documentation"
         secondaryButtonHref="#documentation"
-        backgroundImages={["/doors-hero/door01.webp", "/doors-hero/door02.webp"]}
+        backgroundImages={[
+          "/doors-hero/door01.webp",
+          "/doors-hero/door02.webp",
+        ]}
         carouselInterval={5000}
       />
 
@@ -167,7 +170,7 @@ function MLDoors() {
           <div className="grid-2 grid-gap-8">
             <div className="feature-list">
               <h3 className="margin-bottom-6">Key capabilities:</h3>
-              <ul className="feature-list-unstyled">
+              <div className="feature-list-unstyled">
                 <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
@@ -193,12 +196,12 @@ function MLDoors() {
                     Multiple door types: hinged, sliding, pocket, and doorways
                   </span>
                 </motion.li>
-              </ul>
+              </div>
             </div>
 
             <div className="feature-list">
               <h3 className="margin-bottom-6">&nbsp;</h3>
-              <ul className="feature-list-unstyled">
+              <div className="feature-list-unstyled">
                 <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
@@ -218,7 +221,7 @@ function MLDoors() {
                     Professional schedule generation with CSV and HTML exports
                   </span>
                 </motion.li>
-              </ul>
+              </div>
             </div>
           </div>
         </Container>
@@ -264,7 +267,10 @@ function MLDoors() {
 
           <div className="grid-2 grid-gap-12">
             <div className="workflow-steps">
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">1</span>
                 <div>
                   <h4>Select wall and door type</h4>
@@ -274,7 +280,10 @@ function MLDoors() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">2</span>
                 <div>
                   <h4>Place automatically</h4>
@@ -282,7 +291,10 @@ function MLDoors() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">3</span>
                 <div>
                   <h4>Customize design</h4>
@@ -292,7 +304,10 @@ function MLDoors() {
             </div>
 
             <div className="workflow-steps">
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">4</span>
                 <div>
                   <h4>Preview and animate</h4>
@@ -300,7 +315,10 @@ function MLDoors() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">5</span>
                 <div>
                   <h4>Generate documentation</h4>

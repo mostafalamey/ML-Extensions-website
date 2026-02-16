@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ImageModal } from './ImageModal';
-import { staggerItem } from '../utils/animations';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ImageModal } from "./ImageModal";
+import { staggerItem } from "../utils/animations";
 
 interface FeatureShowcardProps {
   title: string;
@@ -16,18 +16,12 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
   description,
   gifUrl,
   placeholderText = "Feature Demo",
-  className = ''
+  className = "",
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [sourceElement, setSourceElement] = useState<HTMLElement | null>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-  const placeholderRef = useRef<HTMLDivElement>(null);
 
   const handleImageClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Capture the source element before opening the modal
-    const element = gifUrl ? imageRef.current : placeholderRef.current;
-    setSourceElement(element);
     setIsModalOpen(true);
   };
 
@@ -37,23 +31,26 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
 
   return (
     <>
-      <motion.div 
+      <motion.div
         className={`feature-showcard ${className}`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerItem}
       >
-        <div className="feature-showcard-media" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
+        <div
+          className="feature-showcard-media"
+          onClick={handleImageClick}
+          style={{ cursor: "pointer" }}
+        >
           {gifUrl ? (
-            <img 
-              ref={imageRef}
-              src={gifUrl} 
+            <img
+              src={gifUrl}
               alt={`${title} demonstration`}
               className="feature-gif"
             />
           ) : (
-            <div ref={placeholderRef} className="feature-placeholder">
+            <div className="feature-placeholder">
               <span className="placeholder-text">{placeholderText}</span>
             </div>
           )}
@@ -62,20 +59,19 @@ export const FeatureShowcard: React.FC<FeatureShowcardProps> = ({
           <h3 className="feature-showcard-title">{title}</h3>
           <p className="feature-showcard-description">{description}</p>
           <div className="feature-click-hint">
-            <span>Click image to view {gifUrl ? 'demo' : 'details'}</span>
+            <span>Click image to view {gifUrl ? "demo" : "details"}</span>
           </div>
         </div>
       </motion.div>
 
-      <ImageModal 
-        isOpen={isModalOpen} 
+      <ImageModal
+        isOpen={isModalOpen}
         onClose={closeModal}
         imageUrl={gifUrl}
         alt={`${title} demonstration`}
         title={title}
         description={description}
         placeholderText={placeholderText}
-        sourceElement={sourceElement}
       />
     </>
   );

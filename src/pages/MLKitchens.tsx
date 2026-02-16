@@ -29,56 +29,56 @@ const mlKitchensFeatures = [
     title: "Advanced Configuration Dialog",
     description:
       "Six-tab interface with live 3D preview. Configure dimensions, construction, doors, drawers, and materials with real-time visual feedback.",
-    gifUrl: undefined, // Will be added when available
+    gifUrl: "/kitchens-features/advanced-configuration-dialog.gif",
     placeholderText: "Config Dialog Demo",
   },
   {
     title: "Revolutionary 3D Preview System",
     description:
       "Real-time Three.js visualization with interactive door and drawer animations. Click to open elements and see exactly what you're designing.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/revolutionary-3D-preview-system.gif",
     placeholderText: "3D Preview Demo",
   },
   {
     title: "Precision Placement Controls",
     description:
       "Advanced placement with keyboard shortcuts, live anchor markers, and 90° rotation controls for perfect cabinet positioning every time.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/precision-placement-controls.gif",
     placeholderText: "Placement Demo",
   },
   {
     title: "160+ Professional Cabinet Presets",
     description:
       "Complete library of base, wall, tall, and corner cabinets in both metric and imperial units. From single doors to complex configurations.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/160+professional-cabinet-presets.gif",
     placeholderText: "Cabinet Library Demo",
   },
   {
     title: "25+ Door & Drawer Styles",
     description:
       "From classic Shaker to contemporary slab designs. Mix and match styles per cabinet or even per door for unlimited design flexibility.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/25+door&drawer-styles.png",
     placeholderText: "Styles Demo",
   },
   {
     title: "Built-In Appliance Integration",
     description:
       "Visual appliance selector with ovens, microwaves, dishwashers, and refrigerators. Automatic scaling and real-time 3D preview integration.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/built-In-appliance-integration.png",
     placeholderText: "Appliances Demo",
   },
   {
     title: "Professional Schedule Manager",
     description:
       "Generate detailed cabinet schedules with filtering, client information, and professional CSV/HTML exports for quotes and documentation.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/professional-schedule-manager.png",
     placeholderText: "Schedule Demo",
   },
   {
     title: "OpenCutList Compatibility",
     description:
       "Seamless integration with manufacturing tools. Generate cut lists, material reports, and CNC-ready documentation from your designs.",
-    gifUrl: undefined,
+    gifUrl: "/kitchens-features/open-cutList-compatibility.jpg",
     placeholderText: "Manufacturing Demo",
   },
 ];
@@ -216,7 +216,7 @@ function MLKitchens() {
           <div className="grid-2 grid-gap-8">
             <div className="feature-list">
               <h3 className="margin-bottom-6">Key capabilities:</h3>
-              <ul className="feature-list-unstyled">
+              <div className="feature-list-unstyled">
                 <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
@@ -243,12 +243,12 @@ function MLKitchens() {
                     Multiple door, drawer, hardware, and material libraries
                   </span>
                 </motion.li>
-              </ul>
+              </div>
             </div>
 
             <div className="feature-list">
               <h3 className="margin-bottom-6">&nbsp;</h3>
-              <ul className="feature-list-unstyled">
+              <div className="feature-list-unstyled">
                 <motion.li className="feature-list-item" variants={staggerItem}>
                   <CheckSquare size={20} className="feature-list-icon" />
                   <span>
@@ -267,7 +267,7 @@ function MLKitchens() {
                     Fully compatible with manufacturing tools like OpenCutList
                   </span>
                 </motion.li>
-              </ul>
+              </div>
             </div>
           </div>
         </Container>
@@ -313,7 +313,10 @@ function MLKitchens() {
 
           <div className="grid-2 grid-gap-12">
             <div className="workflow-steps">
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">1</span>
                 <div>
                   <h4>Start with presets</h4>
@@ -321,7 +324,10 @@ function MLKitchens() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">2</span>
                 <div>
                   <h4>Customize everything</h4>
@@ -329,7 +335,10 @@ function MLKitchens() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">3</span>
                 <div>
                   <h4>Preview changes</h4>
@@ -339,7 +348,10 @@ function MLKitchens() {
             </div>
 
             <div className="workflow-steps">
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">4</span>
                 <div>
                   <h4>Generate documentation</h4>
@@ -347,7 +359,10 @@ function MLKitchens() {
                 </div>
               </motion.div>
 
-              <motion.div className="workflow-step workflow-step-spacing" variants={staggerItem}>
+              <motion.div
+                className="workflow-step workflow-step-spacing"
+                variants={staggerItem}
+              >
                 <span className="step-number">5</span>
                 <div>
                   <h4>Export results</h4>
